@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yash Bisht </title>
+    <title>Yash Bisht</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -19,854 +20,193 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                    },
+                    }
                 }
             }
         }
     </script>
+
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #0f172a;
-    color: #e2e8f0;
-    scroll-behavior: smooth;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
 
-/* Gradient Text */
-.gradient-text {
-    background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-/* Smooth Hover Card */
-.card-hover {
-    transition: transform .35s ease, box-shadow .35s ease;
-}
-.card-hover:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 25px rgba(14,165,233,0.25);
-}
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(14,165,233,0.25);
+        }
 
-/* Navbar Link Underline */
-.nav-link {
-    position: relative;
-    padding-bottom: 2px;
-}
-.nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-    transition: width .4s ease;
-}
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
+        .nav-link::after {
+            transition: width .4s;
+        }
 
-/* Smooth Floating Animation */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
-}
-.floating { animation: float 3.2s ease-in-out infinite; }
+        .floating { animation: float 3s ease-in-out infinite; }
+        @keyframes float {50%{transform:translateY(-14px);} }
 
-/* Skill Bars */
-.skill-bar {
-    height: 8px;
-    border-radius: 999px;
-    background-color: #1e2535;
-}
-.skill-progress {
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-    transition: width 1s ease-in-out;
-}
-
-/* Project Card Depth */
-.project-card {
-    background: #131c2e;
-    border: 1px solid #1e293b;
-    transition: all .35s ease;
-}
-.project-card:hover {
-    border-color: #0ea5e9;
-    box-shadow: 0 0 25px rgba(14, 165, 233, 0.25);
-}
-
-/* Inputs */
-.contact-input {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    padding: 0.75rem;
-    border-radius: 6px;
-    transition: all .35s ease;
-}
-.contact-input:focus {
-    border-color: #0ea5e9;
-    box-shadow: 0 0 8px rgba(14, 165, 233, 0.35);
-}
-
-/* Buttons */
-.btn-primary {
-    background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-    transition: transform .3s ease, box-shadow .3s ease;
-}
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(14, 165, 233, 0.35);
-}
-
-/* Social Icons */
-.social-icon {
-    transition: transform .3s ease, background-color .3s ease;
-}
-.social-icon:hover {
-    transform: translateY(-4px);
-    background-color: #0ea5e9 !important;
-}
-
-
-
-
+        .btn-primary {
+            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+        }
+        .btn-primary:hover { transform: translateY(-3px); }
     </style>
 </head>
-<body class="bg-dark text-slate-200">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-darker/50 backdrop-blur-sm z-50 shadow-lg">
-    <div class="container mx-auto px-6 py-4">
-        <div class="flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold gradient-text">Yash's Portfolio</a>
 
-            <!-- Mobile Button -->
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-slate-200 hover:text-primary focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+<body>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
+<!-- NAVBAR -->
+<nav class="fixed w-full bg-darker/60 backdrop-blur-md z-50 shadow-lg">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <span class="text-2xl font-bold gradient-text">Yash's Portfolio</span>
 
-                <!-- Resume Button -->
-                <a href="assets/Yash Bisht.pdf" target="_blank" download="Yash_Bisht_Resume" class="block py-2 px-4 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition w-fit">
-                Resume
-            </a>
-            </div>
+        <button id="menu-toggle" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+
+        <div class="hidden md:flex space-x-8 items-center">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+
+            <a href="assets/Yash Bisht.pdf" download class="px-4 py-2 border border-primary text-primary rounded-full hover:bg-primary hover:text-white">Resume</a>
         </div>
+    </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2 space-y-2">
-            <a href="#home" class="block py-2 nav-link active">Home</a>
-            <a href="#about" class="block py-2 nav-link">About</a>
-            <a href="#skills" class="block py-2 nav-link">Skills</a>
-            <a href="#projects" class="block py-2 nav-link">Projects</a>
-            <a href="#contact" class="block py-2 nav-link">Contact</a>
-
-            <!-- Resume Mobile -->
-            <a href="assets/Yash Bisht.pdf" target="_blank" download="Yash_Bisht_Resume" class="block py-2 px-4 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition w-fit">
-                Resume
-            </a>
-        </div>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3">
+        <a href="#home" class="block nav-link">Home</a>
+        <a href="#about" class="block nav-link">About</a>
+        <a href="#skills" class="block nav-link">Skills</a>
+        <a href="#projects" class="block nav-link">Projects</a>
+        <a href="#contact" class="block nav-link">Contact</a>
+        <a href="assets/Yash Bisht.pdf" download class="block px-4 py-2 border border-primary text-primary rounded-full">Resume</a>
     </div>
 </nav>
 
-    
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-3xl md:text-5xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"> </span></h1>
-                <!-- <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"> </span></h1> -->
-                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-300">Full Stack Developer</h2>
-                <p class="text-lg mb-8 text-slate-400 max-w-lg">
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            A passionate <span class="font-bold gradient-text">MERN Stack Developer</span> creating modern web applications with cutting-edge technologies.
-          </p>
-                <br>Let’s build technology that makes a difference.
-                </p>
-                <div class="flex space-x-4">
-                    <a href="#contact" class="px-6 py-3 rounded-full btn-primary font-medium">Hire Me</a>
-                    <a href="#projects" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">View Work</a>
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center pt-24">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+        
+        <div class="md:w-1/2">
+            <h1 class="text-5xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"></span></h1>
+            <h2 class="text-2xl text-slate-300 mb-6">Full Stack Developer</h2>
 
-                </div>
-                <div class="flex mt-8 space-x-4">
-                    <a href="https://github.com/yash-bisht711" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/yash-bisht-" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <!-- <a href="https://x.com/" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400">
-                        <i class="fab fa-twitter"></i>
-                    </a> -->
-                    <!-- <a href="https://www.instagram.com/whyrush711/" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a> -->
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                    <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDCNdquE8G5w-Cxy1G5Zh770LMwNlnvfNMxw&s" 
-                         alt="Profile" 
-                         class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 floating">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-darker">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <div class="relative w-64 h-64">
-                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
-                        <img src="assets/Web_Photo_EditorYashbnew.jpg" 
-                             alt="About" 
-                             class="relative w-full h-full object-coverfit rounded-2xl border-4 border-slate-800">
-                    </div>
-                </div>
-                
-                <div class="md:w-2/3 md:pl-12">
-                    <h3 class="text-2xl font-bold mb-6">Who am I?</h3>
-                    <p class="text-lg mb-6">
-              I'm an enthusiastic <span class="font-bold gradient-text">Full Stack Developer</span> with a keen interest in the MERN stack (MongoDB, Express.js, React.js, Node.js). Although I am a fresher, I have spent considerable time learning and building projects that focus on creating scalable, responsive, and efficient web applications.
+            <p class="text-slate-400 max-w-lg mb-8">
+                A passionate MERN Stack Developer creating modern and scalable web applications.
             </p>
-                    <p class="text-lg mb-6">
-              I am highly motivated, detail-oriented, and committed to continuously improving my skills. I look forward to applying my knowledge in real-world projects and collaborating with experienced professionals to deliver meaningful and innovative solutions.
-            </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div>
-                            <h4 class="font-semibold mb-2">Name: <span class="text-slate-300">Yash Bisht</span></h4>
-                            <h4 class="font-semibold mb-2">Email: <span class="text-slate-300">whyrush711@gmail.com</span></h4>
-                            <h4 class="font-semibold mb-2">Phone: <span class="text-slate-300">+91 958282053</span></h4>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2">Age: <span class="text-slate-300">21</span></h4>
-                            <!-- <h4 class="font-semibold mb-2">Experience: <span class="text-slate-300">Fresher</span></h4> -->
-                            <h4 class="font-semibold mb-2">Location: <span class="text-slate-300">Uttar Pradesh , Bareilly</span></h4>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-4">
-                        <!-- <a href="assets/Yash Bisht.pdf" download="Anubhav_Maurya_Resume" class="px-6 py-3 rounded-full btn-primary font-medium">Resume</a> -->
-                        <a href="assets/Yash Bisht.pdf" target="_blank" download="Yash_Bisht_Resume" class="px-6 py-3 rounded-full btn-primary font-medium">Resume <i class="fas fa-arrow-down"></i></a>
-                        <a href="#contact" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">Contact Me</a>
-                    </div>
-                </div>
+
+            <div class="flex gap-4">
+                <a href="#contact" class="px-6 py-3 rounded-full btn-primary">Hire Me</a>
+                <a href="#projects" class="px-6 py-3 rounded-full border border-primary text-primary hover:bg-primary/10">View Work</a>
+            </div>
+
+            <div class="flex gap-4 mt-8">
+                <a href="https://github.com/yash-bisht711" class="text-2xl hover:text-primary"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yash-bisht-" class="text-2xl hover:text-blue-500"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
-    </section>
-    
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-dark">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="gradient-text">Skills</span></h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">HTML/CSS</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">JavaScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">React</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Node.js</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Professional Skills</h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Communication</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Teamwork</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Problem Solving</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Creativity</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Tools & Technologies -->
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold mb-8 text-center">Tools & <span class="gradient-text">Technologies</span></h3>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
-                        <span>HTML5</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-css3-alt text-4xl text-blue-500 mb-2"></i>
-                        <span>CSS3</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-js text-4xl text-yellow-400 mb-2"></i>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-react text-4xl text-blue-400 mb-2"></i>
-                        <span>React</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
-                        <span>Node.js</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fas fa-database text-4xl text-blue-300 mb-2"></i>
-                        <span>MongoDB</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-git-alt text-4xl text-orange-600 mb-2"></i>
-                        <span>Git</span>
-                    </div>
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fab fa-npm text-4xl text-red-500 mb-2"></i>
-                        <span>npm</span>
-                    </div>   
-                    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-                        <i class="fas fa-terminal text-4xl text-gray-300 mb-2"></i>
-                        <span>VS Code</span>
-                    </div>
-                </div>
-            </div>
+
+        <div class="md:w-1/2 flex justify-center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDCNdquE8G5w-Cxy1G5Zh770LMwNlnvfNMxw&s" class="w-80 h-80 rounded-full border-4 border-slate-800 floating">
         </div>
-    </section>
-    
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-darker">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="gradient-text">Projects</span></h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card rounded-xl overflow-hidden card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="assets/Screenshot (1113).png" 
-                             alt="Project 1" 
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Vi-Meet</h3>
-                        <p class="text-slate-400 mb-4">
-                            A full-featured Vi-Meet Video Calling platform built with React, Mongodb, Express and Nodejs.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TailwindCSS</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Expres</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Nodejs</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Mongodb</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <a href="https://vi-meet-1c0480.netlify.app/" class="text-primary hover:text-secondary">
-                                <i class="fas fa-external-link-alt"></i> Check it Out!
-                            </a>
-                            <a href="https://github.com/yash-bisht711/frontend_Vi-Meet" class="text-primary hover:text-secondary">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card rounded-xl overflow-hidden card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="assets/memhub.jpg" 
-                             alt="Project 2" 
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">MeMehub</h3>
-                        <p class="text-slate-400 mb-4">
-An efficient app for creating memes from image or templates.                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firebase</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Django</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TailwindCSS</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <a href="https://memestream.vercel.app/" class="text-primary hover:text-secondary">
-                                <i class="fas fa-external-link-alt"></i> Check it Out!
-                            </a>
-                            <a href="https://github.com/yash-bisht711/frontend-memehub" class="text-primary hover:text-secondary">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <!-- <div class="project-card rounded-xl overflow-hidden card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="Images/hospital.png" 
-                             alt="Project 3" 
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Multi-Vendor E-commerce Platform</h3>
-                        <p class="text-slate-400 mb-4">
-                             A full-featured Comprehensive Multi-Vendor E-commerce Platform platform built with HTML, CSS, and JavaScript.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">CSS</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">JavaScript</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firebase</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <a href="https://ECommerce-Multivendor-Platform.netlify.app/" class="text-primary hover:text-secondary">
-                                <i class="fas fa-external-link-alt"></i> Check it Out!
-                            </a>
-                            <a href="https://github.com/yash-bisht711/E-commerce-MultiVendors-Website.git" class="text-primary hover:text-secondary">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
 
-                <div class="project-card rounded-xl overflow-hidden card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="assets/mysteryspot.png" 
-                             alt="Project 3" 
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Mystery-spot</h3>
-                        <p class="text-slate-400 mb-4">
-                             A full-featured game of finding the hidden object built with React, Tailwind CSS and Firebase.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TailwindCSS</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firebase</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <a href="https://mysteryspot.netlify.app" class="text-primary hover:text-secondary">
-                                <i class="fas fa-external-link-alt"></i> Check it Out!
-                            </a>
-                            <a href="https://github.com/StutiSharan/Game-Project" class="text-primary hover:text-secondary">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-             
-            </div>
-            
-            <!-- <div class="text-center mt-12">
-                <a href="#projects" class="px-8 py-3 rounded-full btn-primary font-medium inline-flex items-center">
-                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div> -->
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 bg-darker">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
+        <p class="max-w-3xl mx-auto text-slate-400 mt-6">
+            I'm a dedicated MERN Stack Developer focused on building high-quality web applications.
+        </p>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-20">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-10">My <span class="gradient-text">Skills</span></h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-slate-800 p-6 rounded-lg card-hover">HTML / CSS</div>
+            <div class="bg-slate-800 p-6 rounded-lg card-hover">JavaScript</div>
+            <div class="bg-slate-800 p-6 rounded-lg card-hover">React.js</div>
+            <div class="bg-slate-800 p-6 rounded-lg card-hover">Node.js</div>
         </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-dark">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-20 bg-darker">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-12">My <span class="gradient-text">Projects</span></h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            <!-- Vi Meet -->
+            <div class="bg-slate-800 rounded-xl p-6 card-hover">
+                <img src="assets/Screenshot (1113).png" class="rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">Vi-Meet</h3>
+                <p class="text-slate-400 mb-4">A video chat platform using MERN Stack.</p>
+                <a href="https://vi-meet-1c0480.netlify.app/" class="text-primary mr-4">Live</a>
+                <a href="https://github.com/yash-bisht711/frontend_Vi-Meet" class="text-primary">Code</a>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
-                    <p class="text-slate-400 mb-8">
-                        Feel free to reach out to me for any questions or opportunities. 
-                        I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="bg-slate-800 p-3 rounded-full mr-4">
-                                <i class="fas fa-map-marker-alt text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Location</h4>
-                                <p class="text-slate-400">UttarPradesh , Bareilly</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-slate-800 p-3 rounded-full mr-4">
-                                <i class="fas fa-envelope text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Email</h4>
-                                <p class="text-slate-400">whyrush711@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-slate-800 p-3 rounded-full mr-4">
-                                <i class="fas fa-phone-alt text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Phone</h4>
-                                <p class="text-slate-400">+91 9528282053</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="font-bold mb-4">Follow Me</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/yash-bisht711" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/yash-bisht-/" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600">
-                                <i class="fab fa-linkedin-in text-xl"></i>
-                            </a>
-                            <!-- <a href="https://x.com/" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400">
-                                <i class="fab fa-twitter text-xl"></i>
-                            </a> -->
-                            <!-- <a href="https://www.instagram.com/whyrush711/" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600">
-                                <i class="fab fa-instagram text-xl"></i>
-                            </a> -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
-                    <form
-                        action="https://formspree.io/f/mwprrygr"
-                                 method="POST"
-                                    class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block mb-2 font-medium">Your Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block mb-2 font-medium">Your Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="subject" class="block mb-2 font-medium">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
-                        </div>
-                        <div>
-                            <label for="message" class="block mb-2 font-medium">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required></textarea>
-                        </div>
-                        <button type="submit" class="px-8 py-3 rounded-full btn-primary font-medium w-full">
-                            Send Message <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
-                </div>
+
+            <!-- MemeHub -->
+            <div class="bg-slate-800 rounded-xl p-6 card-hover">
+                <img src="assets/memhub.jpg" class="rounded-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">MemeHub</h3>
+                <p class="text-slate-400 mb-4">A meme creation and sharing platform.</p>
+                <a href="https://memestream.vercel.app/" class="text-primary mr-4">Live</a>
+                <a href="https://github.com/yash-bisht711" class="text-primary">Code</a>
             </div>
+
         </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="bg-darker py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
-                    <p class="text-slate-400 mt-2">&copy; 2025 Yash Bisht . All rights reserved.</p>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://github.com/yash-bisht711" class="text-slate-400 hover:text-primary transition">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/yash-bisht-/" class="text-slate-400 hover:text-blue-600 transition">
-                        <i class="fab fa-linkedin-in text-xl"></i>
-                    </a>
-                    <a href="https://x.com/" class="text-slate-400 hover:text-blue-400 transition">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="https://www.instagram.com/whyrush/" class="text-slate-400 hover:text-pink-600 transition">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- <div class="border-t border-slate-800 mt-8 pt-8 text-center text-slate-500">
-                <p>Made with <i class="fas fa-heart text-red-500"></i> and lots of <i class="fas fa-coffee text-amber-500"></i></p>
-            </div> -->
-        </div>
-    </footer>
-    
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hidden">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-    
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                    
-                    // Update active link
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                }
-            });
-        });
-        
-        // Update active link on scroll
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.getAttribute('id');
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-            
-            // Show/hide back to top button
-            const backToTopButton = document.getElementById('back-to-top');
-            if (scrollPosition > 300) {
-                backToTopButton.classList.remove('hidden');
-            } else {
-                backToTopButton.classList.add('hidden');
-            }
-        });
-        
-        // Back to top button
-        document.getElementById('back-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Animate skill bars on scroll
-        const animateSkillBars = () => {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            const skillsSection = document.getElementById('skills');
-            const skillsSectionTop = skillsSection.offsetTop;
-            const windowHeight = window.innerHeight;
-            
-            if (window.scrollY > skillsSectionTop - windowHeight + 200) {
-                skillBars.forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 100);
-                });
-                
-                // Remove event listener after animation
-                window.removeEventListener('scroll', animateSkillBars);
-            }
-        };
-        
-        window.addEventListener('scroll', animateSkillBars);
+    </div>
+</section>
 
+<!-- CONTACT -->
+<section id="contact" class="py-20">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-6">Contact <span class="gradient-text">Me</span></h2>
+        <p class="text-slate-400 mb-10">Let’s work together on your project.</p>
 
-        const form = document.querySelector("form");
+        <a href="mailto:whyrush711@gmail.com" class="btn-primary px-6 py-3 rounded-full">Send Email</a>
+    </div>
+</section>
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+<!-- FOOTER -->
+<footer class="py-6 text-center text-slate-500">
+    © 2025 Yash Bisht. All Rights Reserved.
+</footer>
 
-  // Collect form data
-  const data = {
-    name: form.querySelector("#name").value,
-    email: form.querySelector("#email").value,
-    subject: form.querySelector("#subject").value,
-    message: form.querySelector("#message").value
-  };
-
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
-      alert("✅ Thank you! Your message has been sent.");
-      form.reset();
-    } else {
-      alert("❌ Oops! Something went wrong while sending your message.");
+<script>
+    // Typewriter Effect
+    const words = ["Yash Bisht", "Full Stack Developer", "MERN Developer"];
+    let i = 0, j = 0, current = "", isDeleting = false;
+    function type() {
+        current = words[i];
+        document.getElementById("typewriter").innerHTML = current.slice(0, j);
+        j = !isDeleting ? j + 1 : j - 1;
+        if (j === current.length + 1) isDeleting = true;
+        if (j === 0 && isDeleting) { isDeleting = false; i = (i + 1) % words.length; }
+        setTimeout(type, 120);
     }
-  } catch (error) {
-    alert("⚠️ Network error. Please try again later.");
-    console.error(error);
-  }
-});
+    type();
 
+    // Mobile Menu Toggle
+    document.getElementById("menu-toggle").onclick = () => {
+        document.getElementById("mobile-menu").classList.toggle("hidden");
+    };
+</script>
 
-//for typewriter
-
- document.addEventListener("DOMContentLoaded", function() {
-    const text = "Yash Bisht";
-    const speed = 150; // typing speed (ms per letter)
-    const eraseSpeed = 100; // erasing speed
-    const delay = 2000; // wait 2 seconds before erasing
-    let i = 0;
-    let isDeleting = false;
-
-    const typewriter = document.getElementById("typewriter");
-
-    function typeEffect() {
-      if (!isDeleting && i < text.length) {
-        // Typing forward
-        typewriter.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeEffect, speed);
-      } else if (isDeleting && i > 0) {
-        // Erasing backward
-        typewriter.textContent = text.substring(0, i - 1);
-        i--;
-        setTimeout(typeEffect, eraseSpeed);
-      } else if (!isDeleting && i === text.length) {
-        // Wait before erasing
-        isDeleting = true;
-        setTimeout(typeEffect, delay);
-      } else if (isDeleting && i === 0) {
-        // Restart typing
-        isDeleting = false;
-        setTimeout(typeEffect, speed);
-      }
-    }
-
-    typeEffect();
-  });
-
-    </script>
 </body>
 </html>
