@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en" class="antialiased">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,36 +7,21 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font(s) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- GSAP (animations) + ScrollTrigger plugin -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
-
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
-    // Tailwind theme customization (colors + fonts)
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            glass: 'rgba(255,255,255,0.04)',
-            neon1: '#06b6d4',    // cyan-ish
-            neon2: '#8b5cf6',    // purple
-            bgdark: '#071024',
-            card: '#071b2a'
+            primary: '#0ea5e9',
+            secondary: '#7e22ce',
+            dark: '#0f172a',
+            darker: '#020617'
           },
           fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
+            sans: ['Inter', 'sans-serif']
           }
         }
       }
@@ -44,199 +29,184 @@
   </script>
 
   <style>
-    :root {
-      --glass: rgba(255,255,255,0.04);
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-    html,body { height: 100%; }
     body {
-      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#031025 0%, #071024 60%);
-      color: #e6eef8;
-      -webkit-font-smoothing:antialiased;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
     }
 
-    /* gradient text */
-    .g-text {
-      background: linear-gradient(90deg,var(--tw-gradient-stops));
+    .gradient-text {
+      background: linear-gradient(90deg, #0ea5e9, #7e22ce);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    /* subtle glass card */
-    .glass {
-      background: linear-gradient(180deg,var(--glass), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.04);
-      backdrop-filter: blur(6px);
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(14,165,233,0.12); }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(90deg,#0ea5e9,#7e22ce);
+      transition: width .25s ease;
     }
+    .nav-link:hover::after { width: 100%; }
+    .active::after { width: 100%; }
 
-    /* button neon */
-    .neon-btn {
-      transition: transform .16s ease, box-shadow .16s ease;
+    .skill-bar { height: 8px; border-radius: 4px; background-color: #1e293b; overflow: hidden; }
+    .skill-progress { height: 100%; border-radius: 4px; background: linear-gradient(90deg,#0ea5e9,#7e22ce); transition: width 1s ease-in-out; }
+
+    .project-card {
+      background: linear-gradient(145deg,#1e293b,#0f172a);
+      box-shadow: 5px 5px 15px rgba(2,6,23,0.5), -5px -5px 15px rgba(30,41,59,0.5);
     }
-    .neon-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(99,102,241,0.12); }
+    .contact-input { background-color: #1e293b; border: 1px solid #334155; transition: all .2s ease; }
+    .contact-input:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); outline: none; }
 
-    /* small fix for image rounding */
-    .rounded-portrait { border-radius: 9999px; border: 6px solid rgba(255,255,255,0.04); }
+    .btn-primary { background: linear-gradient(90deg,#0ea5e9,#7e22ce); transition: all .2s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14,165,233,0.18); }
 
-    /* modal backdrop */
-    .modal-backdrop { background: rgba(2,6,23,0.7); }
+    .social-icon { transition: transform .2s ease; }
+    .social-icon:hover { transform: translateY(-3px); }
 
-    /* hidden scrollbars */
-    ::-webkit-scrollbar { width: 8px; height:8px; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 99px; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .floating { animation: float 3.5s ease-in-out infinite; }
 
-    /* typewriter caret */
-    .caret {
-      display: inline-block;
-      width: 2px;
-      height: 1.06em;
-      background: linear-gradient(180deg,var(--tw-gradient-stops));
-      margin-left: 6px;
-      animation: blink 1s steps(2, start) infinite;
-      vertical-align:text-bottom;
-    }
-    @keyframes blink { 50% { opacity: 0 } }
   </style>
 </head>
-<body class="text-slate-100">
+<body class="bg-dark text-slate-200">
 
   <!-- NAV -->
-  <nav class="fixed w-full z-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center justify-between py-4">
-        <a href="#" class="text-xl font-bold g-text" style="--tw-gradient-stops:var(--neon1,#06b6d4), var(--neon2,#8b5cf6);">
-          Yash's Portfolio
-        </a>
+  <nav class="fixed w-full bg-darker/50 backdrop-blur-sm z-50 shadow-lg">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
 
-        <div class="hidden md:flex items-center space-x-6">
-          <a href="#home" class="text-slate-300 hover:text-white nav-link">Home</a>
-          <a href="#about" class="text-slate-300 hover:text-white nav-link">About</a>
-          <a href="#skills" class="text-slate-300 hover:text-white nav-link">Skills</a>
-          <a href="#projects" class="text-slate-300 hover:text-white nav-link">Projects</a>
-          <a href="#contact" class="text-slate-300 hover:text-white nav-link">Contact</a>
-
-          <a id="resume-btn" href="assets/Yash Bisht.pdf" target="_blank" class="ml-4 inline-flex items-center px-4 py-2 rounded-full neon-btn bg-gradient-to-r from-neon1 to-neon2 text-slate-900 font-semibold">
-            <i class="fas fa-download mr-2"></i> Resume
-          </a>
-
-          <!-- theme toggle -->
-          <button id="theme-toggle" class="ml-4 p-2 rounded-full glass" aria-label="Toggle theme">
-            <i id="theme-icon" class="fas fa-moon text-slate-200"></i>
+        <!-- mobile toggle -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-slate-200 hover:text-primary focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
           </button>
         </div>
 
-        <!-- mobile menu toggle -->
-        <div class="md:hidden flex items-center">
-          <button id="mobile-toggle" class="p-2 rounded-md glass"><i class="fas fa-bars"></i></button>
+        <!-- desktop menu -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contact" class="nav-link">Contact</a>
+
+          <!-- Resume button in navbar (opens new tab & triggers download via JS) -->
+          <a href="assets/Yash Bisht.pdf" class="px-4 py-2 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition resume-link" download="Anubhav_Maurya_Resume">Resume</a>
         </div>
       </div>
-    </div>
 
-    <!-- mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-      <div class="flex flex-col space-y-2">
-        <a href="#home" class="py-2 px-3 rounded-md hover:bg-slate-800">Home</a>
-        <a href="#about" class="py-2 px-3 rounded-md hover:bg-slate-800">About</a>
-        <a href="#skills" class="py-2 px-3 rounded-md hover:bg-slate-800">Skills</a>
-        <a href="#projects" class="py-2 px-3 rounded-md hover:bg-slate-800">Projects</a>
-        <a href="#contact" class="py-2 px-3 rounded-md hover:bg-slate-800">Contact</a>
+      <!-- mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+        <a href="#home" class="block py-2 nav-link active">Home</a>
+        <a href="#about" class="block py-2 nav-link">About</a>
+        <a href="#skills" class="block py-2 nav-link">Skills</a>
+        <a href="#projects" class="block py-2 nav-link">Projects</a>
+        <a href="#contact" class="block py-2 nav-link">Contact</a>
+        <a href="assets/Yash Bisht.pdf" class="block py-2 nav-link resume-link" download="Anubhav_Maurya_Resume">Resume</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="home" class="min-h-screen flex items-center pt-24">
-    <div class="max-w-7xl mx-auto px-6 w-full">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div class="space-y-6">
-          <p class="text-sm uppercase tracking-widest text-slate-400">Hi, my name is</p>
-          <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-            <span id="type-name" class="g-text" style="--tw-gradient-stops: #06b6d4, #8b5cf6;">Yash Bisht</span>
-            <span id="type-role" class="block text-xl md:text-2xl mt-2 text-slate-300 font-medium"></span>
-          </h1>
+  <!-- HERO / HOME -->
+  <section id="home" class="min-h-screen flex items-center pt-20">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <div class="md:w-1/2 mb-12 md:mb-0">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"></span></h1>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-300">Full Stack Developer</h2>
+        <p class="text-lg mb-8 text-slate-400 max-w-lg">
+          I engineer modern web applications that deliver results through performance, usability, and clean design.
+          <br>Let’s build technology that makes a difference.
+        </p>
 
-          <p class="text-lg text-slate-300 max-w-xl">
-            I'm a Full Stack (MERN) developer who builds fast, accessible, and well-designed web apps. I focus on clean code, delightful UX, and measurable results.
-          </p>
-
-          <div class="flex flex-wrap gap-4">
-            <a href="#contact" class="inline-flex items-center px-6 py-3 rounded-full neon-btn bg-gradient-to-r from-neon1 to-neon2 text-slate-900 font-semibold">
-              Hire Me
-            </a>
-            <a href="#projects" class="inline-flex items-center px-6 py-3 rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800">View Work</a>
-          </div>
-
-          <div class="flex items-center mt-6 space-x-4">
-            <a href="https://github.com/yash-bisht711" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/yash-bisht-" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center"><i class="fab fa-linkedin-in"></i></a>
-            <!-- <a href="https://x.com/" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center"><i class="fab fa-twitter"></i></a> -->
-            <!-- <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center"><i class="fab fa-instagram"></i></a> -->
-          </div>
+        <div class="flex space-x-4">
+          <a href="#contact" class="px-6 py-3 rounded-full btn-primary font-medium">Hire Me</a>
+          <a href="#projects" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">View Work</a>
         </div>
 
-        <div class="flex justify-center md:justify-end">
-          <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-            <!-- decorative gradient ring -->
-            <div class="absolute -inset-2 rounded-full blur-3xl" style="background:linear-gradient(90deg,#06b6d4,#8b5cf6); opacity:0.12"></div>
-            <!-- Replace this img src with your portrait (no spaces in filename) -->
-            <img src="assets/Web_Photo_EditorYashbnew.jpg" alt="Yash Bisht" class="rounded-portrait object-cover w-full h-full shadow-2xl">
-          </div>
+        <!-- Social links OPEN IN NEW TAB -->
+        <div class="flex mt-8 space-x-4">
+          <a href="https://github.com/yash-bisht711" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/yash-bisht-/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <!-- <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600">
+            <i class="fab fa-instagram text-xl"></i>
+          </a> -->
         </div>
       </div>
+
+      <!-- professional profile picture -->
+      <!-- <div class="md:w-1/2 flex justify-center">
+        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div> -->
+          <!-- replace Images/a.jpg with your high-res portrait -->
+          <!-- <img src="Images/Anubhav .jpg" alt="Anubhav Maurya" class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 floating shadow-lg">
+        </div>
+      </div> -->
     </div>
-  </header>
+  </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-16">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-        <div class="md:col-span-1 glass p-6 rounded-xl">
-          <h3 class="text-lg font-semibold">About Me</h3>
-          <p class="mt-4 text-slate-300">
-            Passionate Full Stack developer (MERN) focused on creating performant web experiences. I enjoy building tools and apps that help people solve real problems.
-          </p>
+  <section id="about" class="py-20 bg-darker">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
 
-          <div class="mt-6 space-y-3 text-sm text-slate-300">
-            <div><strong>Name:</strong> Yash Bisht</div>
-            <div><strong>Email:</strong> whyrush711@gmail.com</div>
-            <div><strong>Phone:</strong> +91 9528282053</div>
-            <div><strong>Location:</strong> Bareilly, Uttar Pradesh</div>
-            <div><strong>Age:</strong> 21</div>
-          </div>
-
-          <div class="mt-6 flex gap-3">
-            <a id="resume-cta" href="assets/Yash Bisht.pdf" target="_blank" class="px-4 py-2 rounded-md bg-gradient-to-r from-neon1 to-neon2 text-slate-900 font-semibold inline-flex items-center">
-              <i class="fas fa-file-download mr-2"></i> Download Resume
-            </a>
-            <a href="#contact" class="px-4 py-2 rounded-md border border-slate-700 inline-flex items-center">Contact</a>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+          <div class="relative w-64 h-74">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
+            <img src="assets/Web_Photo_EditorYashbnew.jpg" alt="About photo" class="relative w-full h-full object-cover rounded-2xl border-4 border-slate-800">
           </div>
         </div>
 
-        <div class="md:col-span-2">
-          <h3 class="text-2xl font-bold mb-6 g-text" style="--tw-gradient-stops:#06b6d4,#8b5cf6">What I do</h3>
+        <div class="md:w-2/3 md:pl-12">
+          <h3 class="text-2xl font-bold mb-6">Who am I?</h3>
+          <p class="text-slate-400 mb-6">
+            I'm a passionate aspiring Full Stack Developer with a strong focus on building modern, responsive web applications.
+            I specialize in the JavaScript ecosystem (React, Node.js) and modern CSS frameworks. I'm eager to apply my skills to real-world projects.
+          </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass p-6 rounded-xl">
-              <h4 class="font-semibold">Web Applications</h4>
-              <p class="mt-2 text-slate-300 text-sm">Building responsive and accessible frontends with React, Tailwind, and modern patterns.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div>
+              <h4 class="font-semibold mb-2">Name: <span class="text-slate-300">Yash Bisht</span></h4>
+              <h4 class="font-semibold mb-2">Email: <span class="text-slate-300">whyrush711@gmail.com</span></h4>
+              <h4 class="font-semibold mb-2">Phone: <span class="text-slate-300">+91 9528282053</span></h4>
             </div>
+            <div>
+              <h4 class="font-semibold mb-2">Age: <span class="text-slate-300">22</span></h4>
+              <h4 class="font-semibold mb-2">Location: <span class="text-slate-300">Uttar Pradesh, Bareilly</span></h4>
+            </div>
+          </div>
 
-            <div class="glass p-6 rounded-xl">
-              <h4 class="font-semibold">APIs & Backends</h4>
-              <p class="mt-2 text-slate-300 text-sm">Designing RESTful services with Node.js, Express, and MongoDB for scalable apps.</p>
-            </div>
-
-            <div class="glass p-6 rounded-xl">
-              <h4 class="font-semibold">Performance</h4>
-              <p class="mt-2 text-slate-300 text-sm">Optimizing loading, bundle size, and perceived performance.</p>
-            </div>
-
-            <div class="glass p-6 rounded-xl">
-              <h4 class="font-semibold">Collaboration</h4>
-              <p class="mt-2 text-slate-300 text-sm">Working with teams, version control, and delivering reliable features.</p>
-            </div>
+          <!-- Resume button: opens in new tab & triggers download -->
+          <div class="flex space-x-4">
+            <a href="assets/Yash Bisht.pdf" class="px-6 py-3 rounded-full btn-primary font-medium resume-link" download="Anubhav_Maurya_Resume">
+              Resume <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+            <a href="#contact" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">Contact Me</a>
           </div>
         </div>
       </div>
@@ -244,89 +214,209 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="py-16 bg-gradient-to-b from-transparent to-black/20">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold g-text" style="--tw-gradient-stops:#06b6d4,#8b5cf6">Skills</h2>
-        <p class="text-slate-300 mt-2">Technologies & tools I use regularly</p>
+  <section id="skills" class="py-10 bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="gradient-text">Skills</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h3 class="font-semibold mb-4">Technical</h3>
-
-          <!-- skill item -->
-          <div class="space-y-5">
+          <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+          <div class="space-y-6">
             <div>
-              <div class="flex justify-between mb-2"><span>HTML/CSS</span><span class="text-sm">95%</span></div>
-              <div class="w-full bg-slate-800 rounded-lg h-3 overflow-hidden">
-                <div class="h-3 rounded-lg bg-gradient-to-r from-neon1 to-neon2 skill-fill" data-fill="95%"></div>
-              </div>
+              <div class="flex justify-between mb-2"><span class="font-medium">HTML/CSS</span><span>95%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
             </div>
-
             <div>
-              <div class="flex justify-between mb-2"><span>JavaScript</span><span class="text-sm">90%</span></div>
-              <div class="w-full bg-slate-800 rounded-lg h-3 overflow-hidden">
-                <div class="h-3 rounded-lg bg-gradient-to-r from-neon1 to-neon2 skill-fill" data-fill="90%"></div>
-              </div>
+              <div class="flex justify-between mb-2"><span class="font-medium">JavaScript</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
             </div>
-
             <div>
-              <div class="flex justify-between mb-2"><span>React</span><span class="text-sm">85%</span></div>
-              <div class="w-full bg-slate-800 rounded-lg h-3 overflow-hidden">
-                <div class="h-3 rounded-lg bg-gradient-to-r from-neon1 to-neon2 skill-fill" data-fill="85%"></div>
-              </div>
+              <div class="flex justify-between mb-2"><span class="font-medium">React</span><span>85%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
             </div>
-
             <div>
-              <div class="flex justify-between mb-2"><span>Node.js</span><span class="text-sm">80%</span></div>
-              <div class="w-full bg-slate-800 rounded-lg h-3 overflow-hidden">
-                <div class="h-3 rounded-lg bg-gradient-to-r from-neon1 to-neon2 skill-fill" data-fill="80%"></div>
-              </div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Node.js</span><span>80%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
             </div>
           </div>
         </div>
 
         <div>
-          <h3 class="font-semibold mb-4">Professional</h3>
-          <ul class="space-y-4 text-slate-300">
-            <li>Communication • Teamwork • Problem Solving • Creativity</li>
-            <li>Agile workflows • Version control (Git) • Code reviews</li>
-            <li>Performance monitoring • CI/CD basics</li>
-            <li>UI/UX basics • Responsive design • Accessibility</li>
-          </ul>
+          <h3 class="text-2xl font-bold mb-6">Professional Skills</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Communication</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Teamwork</span><span>85%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Problem Solving</span><span>95%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Creativity</span><span>75%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Tools icons -->
-      <div class="mt-10 grid grid-cols-3 sm:grid-cols-6 gap-4">
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <span class="text-lg font-semibold">JS</span><small class="text-slate-300">JavaScript</small>
-        </div>
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fas fa-database text-2xl mb-1"></i><small class="text-slate-300">MongoDB</small>
-        </div>
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fas fa-Express text-2xl mb-1"></i><small class="text-slate-300">Express</small>
-        </div>
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fab fa-react text-2xl mb-1"></i><small class="text-slate-300">React</small>
-        </div>
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fab fa-node-js text-2xl mb-1"></i><small class="text-slate-300">Node</small>
-        </div>
-        <!-- <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fas fa-database text-2xl mb-1"></i><small class="text-slate-300">MongoDB</small>
-        </div> -->
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fab fa-git-alt text-2xl mb-1"></i><small class="text-slate-300">Git</small>
-        </div>
-        <div class="glass p-4 rounded-lg flex flex-col items-center">
-          <i class="fas fa-cloud text-2xl mb-1"></i><small class="text-slate-300">Vercel / Netlify</small>
-        </div>
-      </div>
+<!-- Tools & Technologies (updated with requested items & brand colors) -->
+<div class="mt-16">
+  <h3 class="text-2xl font-bold mb-8 text-center">Tools & <span class="gradient-text">Technologies</span></h3>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+    <!-- JavaScript -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#f7df1e;color:#000;font-weight:700;">JS</span>
+      <span>JavaScript</span>
     </div>
-  </section>
+
+    <!-- React -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#61dafb;color:#041323;">
+        <i class="fab fa-react text-2xl" aria-hidden="true"></i>
+      </span>
+      <span>React</span>
+    </div>
+
+    <!-- Node.js -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#8cc84b;color:#06240a;">
+        <i class="fab fa-node-js text-2xl" aria-hidden="true"></i>
+      </span>
+      <span>Node.js</span>
+    </div>
+
+    <!-- express.js -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">Ex</span>
+      <span>Express.js</span>
+    </div>
+
+    <!-- MongoDB -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#47A248;color:#fff;">
+        <i class="fas fa-database text-xl" aria-hidden="true"></i>
+      </span>
+      <span>MongoDB</span>
+    </div>
+
+    <!-- Redux -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Redux brand purple -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#764abc;color:#fff;">
+        <!-- use FA redux if available; fallback to 'R' -->
+        <i class="fab fa-redux text-xl" aria-hidden="true"></i>
+      </span>
+      <span>Redux</span>
+    </div>
+
+    <!-- HTML5 -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#e34f26;color:#fff;">
+        <i class="fab fa-html5 text-xl" aria-hidden="true"></i>
+      </span>
+      <span>HTML5</span>
+    </div>
+
+    <!-- CSS -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#2965f1;color:#fff;">
+        <i class="fab fa-css3-alt text-xl" aria-hidden="true"></i>
+      </span>
+      <span>CSS3</span>
+    </div>
+
+    <!-- Tailwind CSS -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#06b6d4;color:#012023;font-weight:700;">TW</span>
+      <span>Tailwind CSS</span>
+    </div>
+
+    <!-- Babel -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#F9DC3E;color:#000;font-weight:700;">B</span>
+      <span>Babel</span>
+    </div>
+
+    <!-- npm -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#CB3837;color:#fff;">
+        <i class="fab fa-npm text-lg" aria-hidden="true"></i>
+      </span>
+      <span>npm</span>
+    </div>
+
+    <!-- Notion -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Notion uses black/white -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">N</span>
+      <span>Notion</span>
+    </div>
+
+    <!-- VS Code -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- VS Code teal -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#0078d7;color:#fff;">
+        <i class="fas fa-code text-lg" aria-hidden="true"></i>
+      </span>
+      <span>VS Code</span>
+    </div>
+
+    <!-- Postman -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#FF6C37;color:#fff;font-weight:700;">PM</span>
+      <span>Postman</span>
+    </div>
+
+    <!-- Git -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#F34F29;color:#fff;">
+        <i class="fab fa-git-alt text-lg" aria-hidden="true"></i>
+      </span>
+      <span>Git</span>
+    </div>
+
+    <!-- GitHub -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#181717;color:#fff;">
+        <i class="fab fa-github text-lg" aria-hidden="true"></i>
+      </span>
+      <span>GitHub</span>
+    </div>
+
+    <!-- Vercel -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Vercel black/white -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">V</span>
+      <span>Vercel</span>
+    </div>
+
+    <!-- Netlify -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Netlify teal/green -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#00C7B7;color:#013233;font-weight:700;">Nt</span>
+      <span>Netlify</span>
+    </div>
+
+    <!-- Vite -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Vite purple-ish -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#646CFF;color:#fff;font-weight:700;">Vt</span>
+      <span>Vite</span>
+    </div>
+
+  </div>
+</div>
+
 
   <!-- PROJECTS -->
   <section id="projects" class="py-16">
@@ -380,387 +470,260 @@
     </div>
   </section>
 
+
   <!-- CONTACT -->
-  <section id="contact" class="py-16 bg-gradient-to-b from-transparent to-black/10">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+  <section id="contact" class="py-20 bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
-          <h2 class="text-2xl font-bold mb-4 g-text" style="--tw-gradient-stops:#06b6d4,#8b5cf6">Get In Touch</h2>
-          <p class="text-slate-300 mb-6">Feel free to reach out to me for any questions or full-time opportunities. Send me a message and I’ll reply shortly.</p>
+          <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+          <p class="text-slate-400 mb-8">
+            Feel free to reach out to me for any questions or opportunities.
+          </p>
 
-          <div class="space-y-4 text-slate-300">
-            <div class="flex items-start gap-4">
-              <div class="p-3 rounded-full glass"><i class="fas fa-envelope"></i></div>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-map-marker-alt text-primary text-xl"></i></div>
               <div>
-                <strong>Email</strong>
-                <div class="text-slate-300">whyrush711@gmail.com</div>
+                <h4 class="font-bold mb-1">Location</h4>
+                <p class="text-slate-400">Uttar Pradesh, Bareilly</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-4">
-              <div class="p-3 rounded-full glass"><i class="fas fa-phone"></i></div>
+            <div class="flex items-start">
+              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-envelope text-primary text-xl"></i></div>
               <div>
-                <strong>Phone</strong>
-                <div class="text-slate-300">+91 9528282053</div>
+                <h4 class="font-bold mb-1">Email</h4>
+                <p class="text-slate-400">whyrush711@gmail.com</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-4">
-              <div class="p-3 rounded-full glass"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="flex items-start">
+              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-phone-alt text-primary text-xl"></i></div>
               <div>
-                <strong>Location</strong>
-                <div class="text-slate-300">Bareilly, Uttar Pradesh, India</div>
+                <h4 class="font-bold mb-1">Phone</h4>
+                <p class="text-slate-400">+91 9528282053</p>
               </div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <h4 class="font-bold mb-4">Follow Me</h4>
+            <div class="flex space-x-4">
+              <a href="https://github.com/yash-bisht711" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary"><i class="fab fa-github text-xl"></i></a>
+              <a href="https://www.linkedin.com/in/yash-bisht-/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600"><i class="fab fa-linkedin-in text-xl"></i></a>
+              <!-- <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400"><i class="fab fa-twitter text-xl"></i></a>
+              <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600"><i class="fab fa-instagram text-xl"></i></a> -->
             </div>
           </div>
         </div>
 
         <div>
-          <form id="contact-form" class="space-y-4 glass p-6 rounded-xl" onsubmit="return false;">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" id="cf-name" placeholder="Your name" required class="p-3 rounded-md bg-transparent border border-slate-700" />
-              <input type="email" id="cf-email" placeholder="Your email" required class="p-3 rounded-md bg-transparent border border-slate-700" />
-            </div>
-            <input type="text" id="cf-subject" placeholder="Subject" required class="p-3 rounded-md bg-transparent border border-slate-700 w-full" />
-            <textarea id="cf-message" rows="6" placeholder="Message" required class="p-3 rounded-md bg-transparent border border-slate-700 w-full"></textarea>
+          <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
 
-            <div class="flex items-center gap-4">
-              <button id="send-btn" class="px-5 py-3 rounded-full bg-gradient-to-r from-neon1 to-neon2 text-slate-900 font-semibold neon-btn">
-                <i class="fas fa-paper-plane mr-2"></i> Send Message
-              </button>
-              <div id="send-status" class="text-sm text-slate-300"></div>
+          <!-- formspree + JS submit handler remains -->
+          <form id="contact-form" action="https://formspree.io/f/mwprrygr" method="POST" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block mb-2 font-medium">Your Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+              </div>
+              <div>
+                <label for="email" class="block mb-2 font-medium">Your Email</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+              </div>
             </div>
 
-            <!-- <p class="text-xs text-slate-400 mt-2">This form uses EmailJS. No backend required. Please replace EmailJS IDs in the script below.</p> -->
+            <div>
+              <label for="subject" class="block mb-2 font-medium">Subject</label>
+              <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+            </div>
+
+            <div>
+              <label for="message" class="block mb-2 font-medium">Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required></textarea>
+            </div>
+
+            <button type="submit" class="px-8 py-3 rounded-full btn-primary font-medium w-full">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="py-10">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div>
-        <div class="font-semibold">Yash Bisht</div>
-        <div class="text-slate-400 text-sm">© <span id="year"></span> All rights reserved.</div>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="https://github.com/yash-bisht711" target="_blank" class="glass p-3 rounded-full"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/yash-bisht-/" target="_blank" class="glass p-3 rounded-full"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://x.com/" target="_blank" class="glass p-3 rounded-full"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" class="glass p-3 rounded-full"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-darker py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
+                    <p class="text-slate-400 mt-2">&copy; 2025 Yash Bisht . All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/yash-bisht711" class="text-slate-400 hover:text-primary transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/yash-bisht-/" class="text-slate-400 hover:text-blue-600 transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    <!-- </a>
+                    <a href="https://x.com/" class="text-slate-400 hover:text-blue-400 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/anuuuuu___0094/" class="text-slate-400 hover:text-pink-600 transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
 
   <!-- Back to top -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full flex items-center justify-center glass hidden">
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hidden">
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Project Modal -->
-  <!-- <div id="project-modal" class="fixed inset-0 hidden items-center justify-center z-50">
-    <div class="absolute inset-0 modal-backdrop"></div>
-    <div class="relative max-w-3xl w-full mx-6 bg-gradient-to-b from-card to-black/50 rounded-xl overflow-hidden glass">
-      <div class="p-6">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <h3 id="modal-title" class="text-2xl font-bold"></h3>
-            <p id="modal-desc" class="text-slate-300 mt-2"></p>
-          </div>
-          <div>
-            <button id="modal-close" class="p-2 rounded-md glass"><i class="fas fa-times"></i></button>
-          </div>
-        </div>
-
-        <div id="modal-image" class="mt-6 h-60 w-full bg-slate-800 rounded-md overflow-hidden"></div>
-
-        <div class="mt-4 flex gap-3">
-          <a id="modal-live" href="#" target="_blank" class="px-4 py-2 rounded-md bg-gradient-to-r from-neon1 to-neon2 text-slate-900 font-semibold">View Live</a>
-          <a id="modal-code" href="#" target="_blank" class="px-4 py-2 rounded-md border border-slate-700">View Code</a>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <!-- SCRIPTS -->
   <script>
-    /*****************************
-     *  Helper / Init
-     *****************************/
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu toggle
-    const mobileToggle = document.getElementById('mobile-toggle');
+    // MOBILE MENU TOGGLE
+    const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileToggle && mobileToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-    // Back to top
-    const backBtn = document.getElementById('back-to-top');
+    // SMOOTH SCROLL for internal anchors only
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+          // close mobile menu if open
+          if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+          // update active link classes
+          document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // ACTIVE SECTION ON SCROLL & BACK-TO-TOP button
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) backBtn.classList.remove('hidden'); else backBtn.classList.add('hidden');
-    });
-    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Smooth scroll for anchors
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const href = a.getAttribute('href');
-        if (!href || href === '#') return;
-        const el = document.querySelector(href);
-        if (el) {
-          e.preventDefault();
-          window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+      const scrollPosition = window.scrollY;
+      document.querySelectorAll('section[id]').forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) link.classList.add('active');
+          });
         }
       });
+
+      const backToTopButton = document.getElementById('back-to-top');
+      if (scrollPosition > 300) backToTopButton.classList.remove('hidden'); else backToTopButton.classList.add('hidden');
     });
 
-    /*****************************
-     * THEME TOGGLE (dark/light)
-     *****************************/
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const root = document.documentElement;
+    // BACK TO TOP
+    document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // load preference
-    const savedTheme = localStorage.getItem('site-theme');
-    if (savedTheme === 'light') {
-      document.documentElement.classList.remove('dark');
-      themeIcon.className = 'fas fa-sun text-yellow-300';
-      document.body.style.background = 'linear-gradient(180deg,#f7fbff 0%, #eef6ff 60%)';
-      document.body.style.color = '#0b1220';
-    } else {
-      // default dark
-      document.documentElement.classList.add('dark');
-      themeIcon.className = 'fas fa-moon';
+    // SKILL BARS ANIMATION (run once when skills in view)
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      const skillsSection = document.getElementById('skills');
+      if (!skillsSection) return;
+      const triggerPoint = skillsSection.offsetTop - window.innerHeight + 200;
+      if (window.scrollY >= triggerPoint) {
+        skillBars.forEach(bar => {
+          const width = bar.getAttribute('data-width') || bar.style.width || '0%';
+          // initially set to 0 then animate to width
+          bar.style.width = '0';
+          setTimeout(() => bar.style.width = width, 100);
+        });
+        window.removeEventListener('scroll', animateSkillBars);
+      }
     }
-
-    themeToggle.addEventListener('click', () => {
-      if (document.documentElement.classList.contains('dark')) {
-        // switch to light
-        document.documentElement.classList.remove('dark');
-        themeIcon.className = 'fas fa-sun text-yellow-300';
-        document.body.style.background = 'linear-gradient(180deg,#f7fbff 0%, #eef6ff 60%)';
-        document.body.style.color = '#0b1220';
-        localStorage.setItem('site-theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        themeIcon.className = 'fas fa-moon';
-        document.body.style.background = 'linear-gradient(180deg,#031025 0%, #071024 60%)';
-        document.body.style.color = '#e6eef8';
-        localStorage.setItem('site-theme', 'dark');
-      }
+    // ensure each progress has data-width (already inline style used above)
+    document.querySelectorAll('.skill-progress').forEach(bar => {
+      if (!bar.getAttribute('data-width')) bar.setAttribute('data-width', bar.style.width || '0%');
     });
-
-    /*****************************
-     * Typewriter (name + rotating roles)
-     *****************************/
-    (function typewriter(){
-      const nameEl = document.getElementById('type-name');
-      const roleEl = document.getElementById('type-role');
-      const roles = ['Full Stack Developer', 'MERN Stack Engineer', 'UI/UX Enthusiast', 'Open Source Contributor'];
-      // name typed once:
-      const name = 'Yash Bisht';
-      let i=0;
-      nameEl.textContent = '';
-      function typeName(){
-        if (i < name.length) {
-          nameEl.textContent += name.charAt(i);
-          i++;
-          setTimeout(typeName, 60);
-        } else {
-          // show caret
-          const caret = document.createElement('span'); caret.className = 'caret'; nameEl.appendChild(caret);
-          rotateRoles(0);
-        }
-      }
-      function rotateRoles(idx) {
-        roleEl.textContent = '';
-        const role = roles[idx % roles.length];
-        let j=0;
-        function t() {
-          if (j < role.length) {
-            roleEl.textContent += role.charAt(j); j++; setTimeout(t, 50);
-          } else {
-            setTimeout(() => {
-              // delete
-              let k = role.length;
-              function del() {
-                if (k > 0) {
-                  roleEl.textContent = role.slice(0, k-1);
-                  k--; setTimeout(del, 30);
-                } else {
-                  rotateRoles(idx+1);
-                }
-              }
-              del();
-            }, 1400);
-          }
-        }
-        t();
-      }
-      typeName();
-    })();
-
-    /*****************************
-     * GSAP animations & ScrollTrigger
-     *****************************/
-    gsap.registerPlugin(ScrollTrigger);
-
-    // fade in sections
-    gsap.utils.toArray('section, header, .glass, .project-card').forEach(el => {
-      gsap.from(el, {
-        opacity: 0,
-        y: 30,
-        duration: .8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    // skill bars animation
-    gsap.utils.toArray('.skill-fill').forEach(el => {
-      const target = el.getAttribute('data-fill') || '0%';
-      gsap.set(el, { width: '0%' });
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        onEnter: () => gsap.to(el, { width: target, duration: 1.2, ease: 'power3.out' })
-      });
-    });
-
-    // slight float on portrait
-    gsap.to('img.rounded-portrait', { y: -8, repeat: -1, yoyo: true, duration: 3.5, ease: 'sine.inOut' });
-
-    /*****************************
-     * Projects modal (dynamic)
-     *****************************/
-    document.querySelectorAll('.open-project').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const card = btn.closest('.project-card');
-        const title = card.dataset.title;
-        const desc = card.dataset.desc;
-        const img = card.dataset.img;
-        const live = card.dataset.live;
-        const code = card.dataset.code;
-
-        document.getElementById('modal-title').textContent = title;
-        document.getElementById('modal-desc').textContent = desc;
-        const modalImg = document.getElementById('modal-image');
-        modalImg.innerHTML = `<img src="${img}" alt="${title}" class="w-full h-full object-cover">`;
-        document.getElementById('modal-live').href = live;
-        document.getElementById('modal-code').href = code;
-        document.getElementById('project-modal').classList.remove('hidden');
-        document.getElementById('project-modal').classList.add('flex');
-      });
-    });
-
-    document.getElementById('modal-close').addEventListener('click', () => {
-      document.getElementById('project-modal').classList.add('hidden');
-      document.getElementById('project-modal').classList.remove('flex');
-    });
-
-    // close on outside click
-    document.getElementById('project-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'project-modal') {
-        document.getElementById('project-modal').classList.add('hidden');
-        document.getElementById('project-modal').classList.remove('flex');
-      }
-    });
-
-    /*****************************
-     * Initialize EmailJS
-     * Replace USER_ID, SERVICE_ID, TEMPLATE_ID below
-     *****************************/
-    // IMPORTANT: change these to your EmailJS values
-    const EMAILJS_USER_ID = 'R82BvjziyrkXfqUzw';       // -> replace
-    const EMAILJS_SERVICE_ID = 'service_gru2mep'; // -> replace
-    const EMAILJS_TEMPLATE_ID = 'template_n29x0j8'; // -> replace
-
-    (function initEmailJS(){
-      try {
-        if (emailjs && emailjs.init) {
-          emailjs.init(EMAILJS_USER_ID);
-        } else {
-          console.warn('EmailJS library not loaded correctly.');
-        }
-      } catch (err) {
-        console.warn('EmailJS init error:', err);
-      }
-    })();
-
-    // send email
-    const sendBtn = document.getElementById('send-btn');
-    const statusEl = document.getElementById('send-status');
-
-    sendBtn.addEventListener('click', async () => {
-      const name = document.getElementById('cf-name').value.trim();
-      const email = document.getElementById('cf-email').value.trim();
-      const subject = document.getElementById('cf-subject').value.trim();
-      const message = document.getElementById('cf-message').value.trim();
-
-      if (!name || !email || !subject || !message) {
-        statusEl.textContent = 'Please fill all fields.';
-        return;
-      }
-
-      if (EMAILJS_USER_ID === 'YOUR_EMAILJS_USER_ID' || EMAILJS_SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_EMAILJS_TEMPLATE_ID') {
-        statusEl.textContent = '⚠️ Configure EmailJS IDs in the script before sending.';
-        return;
-      }
-
-      statusEl.textContent = 'Sending…';
-      sendBtn.disabled = true;
-
-      try {
-        const templateParams = {
-          from_name: name,
-          from_email: email,
-          subject,
-          message
-        };
-
-        const res = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-        console.log('EmailJS res:', res);
-        statusEl.textContent = '✅ Message sent. Thanks!';
-        document.getElementById('contact-form').reset();
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = '❌ Error sending message. Try again later.';
-      } finally {
-        sendBtn.disabled = false;
-      }
-    });
+    window.addEventListener('scroll', animateSkillBars);
 
     // CONTACT FORM SUBMISSION (Formspree) - AJAX for nicer UX
-    
-
-    /*****************************
-     * Resume button: open & download fallback
-     *****************************/
-    document.getElementById('resume-btn').addEventListener('click', (e) => {
-      // allow default behavior (open in new tab)
+    const form = document.getElementById('contact-form');
+    form && form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: form.querySelector('#name').value,
+        email: form.querySelector('#email').value,
+        subject: form.querySelector('#subject').value,
+        message: form.querySelector('#message').value
+      };
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          alert('✅ Thank you! Your message has been sent.');
+          form.reset();
+        } else {
+          alert('❌ Oops! Something went wrong while sending your message.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('⚠️ Network error. Please try again later.');
+      }
     });
-    document.getElementById('resume-cta').addEventListener('click', (e) => {
-      // allow default behavior (open in new tab)
+
+    // TYPEWRITER effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const text = "Yash Bisht";
+      const el = document.getElementById('typewriter');
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 120);
+        }
+      }
+      type();
     });
 
-    /*****************************
-     * Small: make nav links active on scroll
-     *****************************/
-    const navLinks = document.querySelectorAll('nav a.nav-link');
-    const sections = document.querySelectorAll('section, header');
-    window.addEventListener('scroll', () => {
-      let idx = sections.length;
-      while(--idx && window.scrollY + 100 < sections[idx].offsetTop) {}
-      navLinks.forEach(link => link.classList.remove('text-white','font-semibold'));
-      const active = Array.from(navLinks).find(l => l.getAttribute('href') === '#' + sections[idx].id);
-      if (active) active.classList.add('text-white','font-semibold');
+    // RESUME LINKS: open in new tab AND trigger download
+    // (some browsers limit download from cross-origin; this handles best-effort)
+    document.querySelectorAll('.resume-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        // allow ctrl/cmd+click to behave naturally
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+        e.preventDefault();
+        const url = this.href;
+        // open a new tab
+        window.open(url, '_blank', 'noopener');
+        // trigger download
+        try {
+          const a = document.createElement('a');
+          a.href = url;
+          const filename = this.getAttribute('download') || url.split('/').pop();
+          a.setAttribute('download', filename);
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } catch (err) {
+          // fallback: do nothing; user already has new tab open
+          console.warn('Download fallback — opened in new tab.', err);
+        }
+      });
     });
 
   </script>
