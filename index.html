@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Yash Bisht — Portfolio</title>
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>
+  <!-- <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -24,7 +24,29 @@
         }
       }
     }
-  </script>
+  </script> -->
+  <script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          primary: '#0ea5e9',
+          secondary: '#7e22ce',
+          dark: '#0f172a',
+          darker: '#020617'
+        },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<!-- THEN load the CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -553,25 +575,26 @@
   </section>
 
     <!-- Footer -->
-    <footer class="bg-darker py-12 w-full">
+    <footer class="w-full bg-[#020617] py-12">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-6 md:mb-0">
         <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
-        <p class="text-slate-400 mt-2">&copy; 2025 Anubhav. All rights reserved.</p>
+        <p class="text-slate-400 mt-2">&copy; 2025 Yash Bisht. All rights reserved.</p>
       </div>
 
       <div class="flex space-x-6">
-        <a href="https://github.com/anuuuuu0094" class="text-slate-400 hover:text-primary transition">
+        <a href="https://github.com/yash-bisht711" class="text-slate-400 hover:text-primary transition">
           <i class="fab fa-github text-xl"></i>
         </a>
-        <a href="https://linkedin.com/in/anubhavmaurya" class="text-slate-400 hover:text-blue-600 transition">
+        <a href="https://www.linkedin.com/in/yash-bisht-/" class="text-slate-400 hover:text-blue-600 transition">
           <i class="fab fa-linkedin-in text-xl"></i>
         </a>
       </div>
     </div>
   </div>
 </footer>
+
 
   <!-- Back to top -->
   <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hidden">
