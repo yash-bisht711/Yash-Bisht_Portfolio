@@ -43,8 +43,4 @@ Example:
 └── 📁 assets/
 
 🔗 Live Demo
-
-(Replace with your Netlify / GitHub Pages link)
-Live Preview: 🔗 Live Demo
-
 Live Preview: (https://yash-bisht711.github.io/Yash-Bisht_Portfolio/)
