@@ -416,7 +416,7 @@
         </div>
 
         <div>
-          <form id="contact-form" class="space-y-4 glass p-6 rounded-xl" action="https://formspree.io/f/mwprrygr" method="POST" onsubmit="return false;">
+          <form id="contact-form" class="space-y-4 glass p-6 rounded-xl" onsubmit="return false;">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input type="text" id="cf-name" placeholder="Your name" required class="p-3 rounded-md bg-transparent border border-slate-700" />
               <input type="email" id="cf-email" placeholder="Your email" required class="p-3 rounded-md bg-transparent border border-slate-700" />
@@ -678,92 +678,67 @@
      * Replace USER_ID, SERVICE_ID, TEMPLATE_ID below
      *****************************/
     // IMPORTANT: change these to your EmailJS values
-    // const EMAILJS_USER_ID = 'whyrush711@gmail.com';       // -> replace
-    // const EMAILJS_SERVICE_ID = 'service_gru2mep'; // -> replace
-    // const EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID'; // -> replace
+    const EMAILJS_USER_ID = 'R82BvjziyrkXfqUzw';       // -> replace
+    const EMAILJS_SERVICE_ID = 'service_gru2mep'; // -> replace
+    const EMAILJS_TEMPLATE_ID = 'template_n29x0j8'; // -> replace
 
-    // (function initEmailJS(){
-    //   try {
-    //     if (emailjs && emailjs.init) {
-    //       emailjs.init(EMAILJS_USER_ID);
-    //     } else {
-    //       console.warn('EmailJS library not loaded correctly.');
-    //     }
-    //   } catch (err) {
-    //     console.warn('EmailJS init error:', err);
-    //   }
-    // })();
-
-    // // send email
-    // const sendBtn = document.getElementById('send-btn');
-    // const statusEl = document.getElementById('send-status');
-
-    // sendBtn.addEventListener('click', async () => {
-    //   const name = document.getElementById('cf-name').value.trim();
-    //   const email = document.getElementById('cf-email').value.trim();
-    //   const subject = document.getElementById('cf-subject').value.trim();
-    //   const message = document.getElementById('cf-message').value.trim();
-
-    //   if (!name || !email || !subject || !message) {
-    //     statusEl.textContent = 'Please fill all fields.';
-    //     return;
-    //   }
-
-    //   if (EMAILJS_USER_ID === 'YOUR_EMAILJS_USER_ID' || EMAILJS_SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_EMAILJS_TEMPLATE_ID') {
-    //     statusEl.textContent = '⚠️ Configure EmailJS IDs in the script before sending.';
-    //     return;
-    //   }
-
-    //   statusEl.textContent = 'Sending…';
-    //   sendBtn.disabled = true;
-
-    //   try {
-    //     const templateParams = {
-    //       from_name: name,
-    //       from_email: email,
-    //       subject,
-    //       message
-    //     };
-
-    //     const res = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-    //     console.log('EmailJS res:', res);
-    //     statusEl.textContent = '✅ Message sent. Thanks!';
-    //     document.getElementById('contact-form').reset();
-    //   } catch (err) {
-    //     console.error(err);
-    //     statusEl.textContent = '❌ Error sending message. Try again later.';
-    //   } finally {
-    //     sendBtn.disabled = false;
-    //   }
-    // });
-
-    // CONTACT FORM SUBMISSION (Formspree) - AJAX for nicer UX
-    const form = document.getElementById('contact-form');
-    form && form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = {
-        name: form.querySelector('#name').value,
-        email: form.querySelector('#email').value,
-        subject: form.querySelector('#subject').value,
-        message: form.querySelector('#message').value
-      };
+    (function initEmailJS(){
       try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        if (res.ok) {
-          alert('✅ Thank you! Your message has been sent.');
-          form.reset();
+        if (emailjs && emailjs.init) {
+          emailjs.init(EMAILJS_USER_ID);
         } else {
-          alert('❌ Oops! Something went wrong while sending your message.');
+          console.warn('EmailJS library not loaded correctly.');
         }
       } catch (err) {
+        console.warn('EmailJS init error:', err);
+      }
+    })();
+
+    // send email
+    const sendBtn = document.getElementById('send-btn');
+    const statusEl = document.getElementById('send-status');
+
+    sendBtn.addEventListener('click', async () => {
+      const name = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const subject = document.getElementById('cf-subject').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+
+      if (!name || !email || !subject || !message) {
+        statusEl.textContent = 'Please fill all fields.';
+        return;
+      }
+
+      if (EMAILJS_USER_ID === 'YOUR_EMAILJS_USER_ID' || EMAILJS_SERVICE_ID === 'YOUR_EMAILJS_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_EMAILJS_TEMPLATE_ID') {
+        statusEl.textContent = '⚠️ Configure EmailJS IDs in the script before sending.';
+        return;
+      }
+
+      statusEl.textContent = 'Sending…';
+      sendBtn.disabled = true;
+
+      try {
+        const templateParams = {
+          from_name: name,
+          from_email: email,
+          subject,
+          message
+        };
+
+        const res = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        console.log('EmailJS res:', res);
+        statusEl.textContent = '✅ Message sent. Thanks!';
+        document.getElementById('contact-form').reset();
+      } catch (err) {
         console.error(err);
-        alert('⚠️ Network error. Please try again later.');
+        statusEl.textContent = '❌ Error sending message. Try again later.';
+      } finally {
+        sendBtn.disabled = false;
       }
     });
+
+    // CONTACT FORM SUBMISSION (Formspree) - AJAX for nicer UX
+    
 
     /*****************************
      * Resume button: open & download fallback
