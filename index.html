@@ -1,212 +1,756 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yash Bisht</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anubhav Maurya — Portfolio</title>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0ea5e9',
-                        secondary: '#7e22ce',
-                        dark: '#0f172a',
-                        darker: '#020617',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5e9',
+            secondary: '#7e22ce',
+            dark: '#0f172a',
+            darker: '#020617'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
         }
-    </script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(14,165,233,0.25);
-        }
-
-        .nav-link::after {
-            transition: width .4s;
-        }
-
-        .floating { animation: float 3s ease-in-out infinite; }
-        @keyframes float {50%{transform:translateY(-14px);} }
-
-        .btn-primary {
-            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-        }
-        .btn-primary:hover { transform: translateY(-3px); }
-    </style>
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-<nav class="fixed w-full bg-darker/60 backdrop-blur-md z-50 shadow-lg">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <span class="text-2xl font-bold gradient-text">Yash's Portfolio</span>
-
-        <button id="menu-toggle" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
-
-        <div class="hidden md:flex space-x-8 items-center">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
-
-            <a href="assets/Yash Bisht.pdf" download class="px-4 py-2 border border-primary text-primary rounded-full hover:bg-primary hover:text-white">Resume</a>
-        </div>
-    </div>
-
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3">
-        <a href="#home" class="block nav-link">Home</a>
-        <a href="#about" class="block nav-link">About</a>
-        <a href="#skills" class="block nav-link">Skills</a>
-        <a href="#projects" class="block nav-link">Projects</a>
-        <a href="#contact" class="block nav-link">Contact</a>
-        <a href="assets/Yash Bisht.pdf" download class="block px-4 py-2 border border-primary text-primary rounded-full">Resume</a>
-    </div>
-</nav>
-
-<!-- HERO -->
-<section id="home" class="min-h-screen flex items-center pt-24">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-        
-        <div class="md:w-1/2">
-            <h1 class="text-5xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"></span></h1>
-            <h2 class="text-2xl text-slate-300 mb-6">Full Stack Developer</h2>
-
-            <p class="text-slate-400 max-w-lg mb-8">
-                A passionate MERN Stack Developer creating modern and scalable web applications.
-            </p>
-
-            <div class="flex gap-4">
-                <a href="#contact" class="px-6 py-3 rounded-full btn-primary">Hire Me</a>
-                <a href="#projects" class="px-6 py-3 rounded-full border border-primary text-primary hover:bg-primary/10">View Work</a>
-            </div>
-
-            <div class="flex gap-4 mt-8">
-                <a href="https://github.com/yash-bisht711" class="text-2xl hover:text-primary"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/yash-bisht-" class="text-2xl hover:text-blue-500"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-
-        <div class="md:w-1/2 flex justify-center">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDCNdquE8G5w-Cxy1G5Zh770LMwNlnvfNMxw&s" class="w-80 h-80 rounded-full border-4 border-slate-800 floating">
-        </div>
-
-    </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="py-20 bg-darker">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
-        <p class="max-w-3xl mx-auto text-slate-400 mt-6">
-            I'm a dedicated MERN Stack Developer focused on building high-quality web applications.
-        </p>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="py-20">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold mb-10">My <span class="gradient-text">Skills</span></h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-slate-800 p-6 rounded-lg card-hover">HTML / CSS</div>
-            <div class="bg-slate-800 p-6 rounded-lg card-hover">JavaScript</div>
-            <div class="bg-slate-800 p-6 rounded-lg card-hover">React.js</div>
-            <div class="bg-slate-800 p-6 rounded-lg card-hover">Node.js</div>
-        </div>
-    </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="py-20 bg-darker">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold mb-12">My <span class="gradient-text">Projects</span></h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-            <!-- Vi Meet -->
-            <div class="bg-slate-800 rounded-xl p-6 card-hover">
-                <img src="assets/Screenshot (1113).png" class="rounded-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">Vi-Meet</h3>
-                <p class="text-slate-400 mb-4">A video chat platform using MERN Stack.</p>
-                <a href="https://vi-meet-1c0480.netlify.app/" class="text-primary mr-4">Live</a>
-                <a href="https://github.com/yash-bisht711/frontend_Vi-Meet" class="text-primary">Code</a>
-            </div>
-
-            <!-- MemeHub -->
-            <div class="bg-slate-800 rounded-xl p-6 card-hover">
-                <img src="assets/memhub.jpg" class="rounded-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">MemeHub</h3>
-                <p class="text-slate-400 mb-4">A meme creation and sharing platform.</p>
-                <a href="https://memestream.vercel.app/" class="text-primary mr-4">Live</a>
-                <a href="https://github.com/yash-bisht711" class="text-primary">Code</a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-20">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold mb-6">Contact <span class="gradient-text">Me</span></h2>
-        <p class="text-slate-400 mb-10">Let’s work together on your project.</p>
-
-        <a href="mailto:whyrush711@gmail.com" class="btn-primary px-6 py-3 rounded-full">Send Email</a>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="py-6 text-center text-slate-500">
-    © 2025 Yash Bisht. All Rights Reserved.
-</footer>
-
-<script>
-    // Typewriter Effect
-    const words = ["Yash Bisht", "Full Stack Developer", "MERN Developer"];
-    let i = 0, j = 0, current = "", isDeleting = false;
-    function type() {
-        current = words[i];
-        document.getElementById("typewriter").innerHTML = current.slice(0, j);
-        j = !isDeleting ? j + 1 : j - 1;
-        if (j === current.length + 1) isDeleting = true;
-        if (j === 0 && isDeleting) { isDeleting = false; i = (i + 1) % words.length; }
-        setTimeout(type, 120);
+      }
     }
-    type();
+  </script>
 
-    // Mobile Menu Toggle
-    document.getElementById("menu-toggle").onclick = () => {
-        document.getElementById("mobile-menu").classList.toggle("hidden");
-    };
-</script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(14,165,233,0.12); }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(90deg,#0ea5e9,#7e22ce);
+      transition: width .25s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .active::after { width: 100%; }
+
+    .skill-bar { height: 8px; border-radius: 4px; background-color: #1e293b; overflow: hidden; }
+    .skill-progress { height: 100%; border-radius: 4px; background: linear-gradient(90deg,#0ea5e9,#7e22ce); transition: width 1s ease-in-out; }
+
+    .project-card {
+      background: linear-gradient(145deg,#1e293b,#0f172a);
+      box-shadow: 5px 5px 15px rgba(2,6,23,0.5), -5px -5px 15px rgba(30,41,59,0.5);
+    }
+    .contact-input { background-color: #1e293b; border: 1px solid #334155; transition: all .2s ease; }
+    .contact-input:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); outline: none; }
+
+    .btn-primary { background: linear-gradient(90deg,#0ea5e9,#7e22ce); transition: all .2s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14,165,233,0.18); }
+
+    .social-icon { transition: transform .2s ease; }
+    .social-icon:hover { transform: translateY(-3px); }
+
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .floating { animation: float 3.5s ease-in-out infinite; }
+
+  </style>
+</head>
+<body class="bg-dark text-slate-200">
+
+  <!-- NAV -->
+  <nav class="fixed w-full bg-darker/50 backdrop-blur-sm z-50 shadow-lg">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
+
+        <!-- mobile toggle -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-slate-200 hover:text-primary focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+        <!-- desktop menu -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contact" class="nav-link">Contact</a>
+
+          <!-- Resume button in navbar (opens new tab & triggers download via JS) -->
+          <a href="resume/Anubhav_Maurya_Resume.pdf" class="px-4 py-2 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition resume-link" download="Anubhav_Maurya_Resume">Resume</a>
+        </div>
+      </div>
+
+      <!-- mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+        <a href="#home" class="block py-2 nav-link active">Home</a>
+        <a href="#about" class="block py-2 nav-link">About</a>
+        <a href="#skills" class="block py-2 nav-link">Skills</a>
+        <a href="#projects" class="block py-2 nav-link">Projects</a>
+        <a href="#contact" class="block py-2 nav-link">Contact</a>
+        <a href="resume/Anubhav_Maurya_Resume.pdf" class="block py-2 nav-link resume-link" download="Anubhav_Maurya_Resume">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / HOME -->
+  <section id="home" class="min-h-screen flex items-center pt-20">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <div class="md:w-1/2 mb-12 md:mb-0">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"></span></h1>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-300">Full Stack Developer</h2>
+        <p class="text-lg mb-8 text-slate-400 max-w-lg">
+          I engineer modern web applications that deliver results through performance, usability, and clean design.
+          <br>Let’s build technology that makes a difference.
+        </p>
+
+        <div class="flex space-x-4">
+          <a href="#contact" class="px-6 py-3 rounded-full btn-primary font-medium">Hire Me</a>
+          <a href="#projects" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">View Work</a>
+        </div>
+
+        <!-- Social links OPEN IN NEW TAB -->
+        <div class="flex mt-8 space-x-4">
+          <a href="https://github.com/anuuuuu0094" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/anubhavmaurya" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- professional profile picture -->
+      <div class="md:w-1/2 flex justify-center">
+        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
+          <!-- replace Images/a.jpg with your high-res portrait -->
+          <img src="Images/Anubhav .jpg" alt="Anubhav Maurya" class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 floating shadow-lg">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 bg-darker">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+          <div class="relative w-64 h-74">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
+            <img src="Images/Anubhav3.png" alt="About photo" class="relative w-full h-full object-cover rounded-2xl border-4 border-slate-800">
+          </div>
+        </div>
+
+        <div class="md:w-2/3 md:pl-12">
+          <h3 class="text-2xl font-bold mb-6">Who am I?</h3>
+          <p class="text-slate-400 mb-6">
+            I'm a passionate aspiring Full Stack Developer with a strong focus on building modern, responsive web applications.
+            I specialize in the JavaScript ecosystem (React, Node.js) and modern CSS frameworks. I'm eager to apply my skills to real-world projects.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div>
+              <h4 class="font-semibold mb-2">Name: <span class="text-slate-300">Anubhav Maurya</span></h4>
+              <h4 class="font-semibold mb-2">Email: <span class="text-slate-300">mauryaanubhav660@gmail.com</span></h4>
+              <h4 class="font-semibold mb-2">Phone: <span class="text-slate-300">+91 8528727245</span></h4>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-2">Age: <span class="text-slate-300">21</span></h4>
+              <h4 class="font-semibold mb-2">Location: <span class="text-slate-300">Uttar Pradesh, Ayodhya</span></h4>
+            </div>
+          </div>
+
+          <!-- Resume button: opens in new tab & triggers download -->
+          <div class="flex space-x-4">
+            <a href="resume/Anubhav_Maurya_Resume.pdf" class="px-6 py-3 rounded-full btn-primary font-medium resume-link" download="Anubhav_Maurya_Resume">
+              Resume <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+            <a href="#contact" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-10 bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="gradient-text">Skills</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">HTML/CSS</span><span>95%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">JavaScript</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">React</span><span>85%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Node.js</span><span>80%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-6">Professional Skills</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Communication</span><span>90%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Teamwork</span><span>85%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Problem Solving</span><span>95%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2"><span class="font-medium">Creativity</span><span>75%</span></div>
+              <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Tools & Technologies (updated with requested items & brand colors) -->
+<div class="mt-16">
+  <h3 class="text-2xl font-bold mb-8 text-center">Tools & <span class="gradient-text">Technologies</span></h3>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+    <!-- JavaScript -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#f7df1e;color:#000;font-weight:700;">JS</span>
+      <span>JavaScript</span>
+    </div>
+
+    <!-- React -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#61dafb;color:#041323;">
+        <i class="fab fa-react text-2xl" aria-hidden="true"></i>
+      </span>
+      <span>React</span>
+    </div>
+
+    <!-- Node.js -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#8cc84b;color:#06240a;">
+        <i class="fab fa-node-js text-2xl" aria-hidden="true"></i>
+      </span>
+      <span>Node.js</span>
+    </div>
+
+    <!-- express.js -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">Ex</span>
+      <span>Express.js</span>
+    </div>
+
+    <!-- MongoDB -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#47A248;color:#fff;">
+        <i class="fas fa-database text-xl" aria-hidden="true"></i>
+      </span>
+      <span>MongoDB</span>
+    </div>
+
+    <!-- Redux -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Redux brand purple -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#764abc;color:#fff;">
+        <!-- use FA redux if available; fallback to 'R' -->
+        <i class="fab fa-redux text-xl" aria-hidden="true"></i>
+      </span>
+      <span>Redux</span>
+    </div>
+
+    <!-- HTML5 -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#e34f26;color:#fff;">
+        <i class="fab fa-html5 text-xl" aria-hidden="true"></i>
+      </span>
+      <span>HTML5</span>
+    </div>
+
+    <!-- CSS -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#2965f1;color:#fff;">
+        <i class="fab fa-css3-alt text-xl" aria-hidden="true"></i>
+      </span>
+      <span>CSS3</span>
+    </div>
+
+    <!-- Tailwind CSS -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#06b6d4;color:#012023;font-weight:700;">TW</span>
+      <span>Tailwind CSS</span>
+    </div>
+
+    <!-- Babel -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#F9DC3E;color:#000;font-weight:700;">B</span>
+      <span>Babel</span>
+    </div>
+
+    <!-- npm -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#CB3837;color:#fff;">
+        <i class="fab fa-npm text-lg" aria-hidden="true"></i>
+      </span>
+      <span>npm</span>
+    </div>
+
+    <!-- Notion -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Notion uses black/white -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">N</span>
+      <span>Notion</span>
+    </div>
+
+    <!-- VS Code -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- VS Code teal -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#0078d7;color:#fff;">
+        <i class="fas fa-code text-lg" aria-hidden="true"></i>
+      </span>
+      <span>VS Code</span>
+    </div>
+
+    <!-- Postman -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#FF6C37;color:#fff;font-weight:700;">PM</span>
+      <span>Postman</span>
+    </div>
+
+    <!-- Git -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#F34F29;color:#fff;">
+        <i class="fab fa-git-alt text-lg" aria-hidden="true"></i>
+      </span>
+      <span>Git</span>
+    </div>
+
+    <!-- GitHub -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#181717;color:#fff;">
+        <i class="fab fa-github text-lg" aria-hidden="true"></i>
+      </span>
+      <span>GitHub</span>
+    </div>
+
+    <!-- Vercel -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Vercel black/white -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">V</span>
+      <span>Vercel</span>
+    </div>
+
+    <!-- Netlify -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Netlify teal/green -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#00C7B7;color:#013233;font-weight:700;">Nt</span>
+      <span>Netlify</span>
+    </div>
+
+    <!-- Vite -->
+    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+      <!-- Vite purple-ish -->
+      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#646CFF;color:#fff;font-weight:700;">Vt</span>
+      <span>Vite</span>
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-20 bg-darker">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="gradient-text">Projects</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="project-card rounded-xl overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="Images/recipe.png" alt="Recipe Explorer" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Recipe Explorer</h3>
+            <p class="text-slate-400 mb-4">A full-featured recipe explorer platform built with React, TailwindCSS, and Firebase.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Redux</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TailwindCSS</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firebase</span>
+            </div>
+            <div class="flex space-x-3">
+              <a href="https://recipe-sharing-apps.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary"><i class="fas fa-external-link-alt"></i> Check it Out!</a>
+              <a href="https://github.com/anuuuuu0094/recipe_sharing_app" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary"><i class="fab fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card rounded-xl overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="Images/property.png" alt="Property Connect" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Property Connect</h3>
+            <p class="text-slate-400 mb-4">A smart productivity app for managing property tasks and team workflows efficiently.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Node.js</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">MongoDB</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Express.js</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TailwindCSS</span>
+            </div>
+            <div class="flex space-x-3">
+              <a href="https://property-connect-real-estate.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary"><i class="fas fa-external-link-alt"></i> Check it Out!</a>
+              <a href="https://github.com/anuuuuu0094/property_connect/tree/main/project_real_estate" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary"><i class="fab fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card rounded-xl overflow-hidden card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="Images/hospital.png" alt="Hospital Management" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Hospital Management</h3>
+            <p class="text-slate-400 mb-4">A full-featured hospital management platform built with HTML, CSS, and JavaScript.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Firebase</span>
+            </div>
+            <div class="flex space-x-3">
+              <a href="https://hospitals-management-system.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary"><i class="fas fa-external-link-alt"></i> Check it Out!</a>
+              <a href="https://github.com/anuuuuu0094/Hospital_management_system" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-secondary"><i class="fab fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTE: View All Projects button removed as requested -->
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-dark">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+          <p class="text-slate-400 mb-8">
+            Feel free to reach out to me for any questions or opportunities.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-map-marker-alt text-primary text-xl"></i></div>
+              <div>
+                <h4 class="font-bold mb-1">Location</h4>
+                <p class="text-slate-400">Uttar Pradesh, Ayodhya</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-envelope text-primary text-xl"></i></div>
+              <div>
+                <h4 class="font-bold mb-1">Email</h4>
+                <p class="text-slate-400">mauryaanubhav660@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-phone-alt text-primary text-xl"></i></div>
+              <div>
+                <h4 class="font-bold mb-1">Phone</h4>
+                <p class="text-slate-400">+91 8528727245</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <h4 class="font-bold mb-4">Follow Me</h4>
+            <div class="flex space-x-4">
+              <a href="https://github.com/anuuuuu0094" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary"><i class="fab fa-github text-xl"></i></a>
+              <a href="https://linkedin.com/in/anubhavmaurya" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600"><i class="fab fa-linkedin-in text-xl"></i></a>
+              <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400"><i class="fab fa-twitter text-xl"></i></a>
+              <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600"><i class="fab fa-instagram text-xl"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+
+          <!-- formspree + JS submit handler remains -->
+          <form id="contact-form" action="https://formspree.io/f/mwprrygr" method="POST" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block mb-2 font-medium">Your Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+              </div>
+              <div>
+                <label for="email" class="block mb-2 font-medium">Your Email</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+              </div>
+            </div>
+
+            <div>
+              <label for="subject" class="block mb-2 font-medium">Subject</label>
+              <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+            </div>
+
+            <div>
+              <label for="message" class="block mb-2 font-medium">Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required></textarea>
+            </div>
+
+            <button type="submit" class="px-8 py-3 rounded-full btn-primary font-medium w-full">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <footer class="bg-darker py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
+                    <p class="text-slate-400 mt-2">&copy; 2025 Anubhav . All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/anuuuuu0094" class="text-slate-400 hover:text-primary transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/anubhavmaurya" class="text-slate-400 hover:text-blue-600 transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="https://x.com/" class="text-slate-400 hover:text-blue-400 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/anuuuuu___0094/" class="text-slate-400 hover:text-pink-600 transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <!-- Back to top -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hidden">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- SCRIPTS -->
+  <script>
+    // MOBILE MENU TOGGLE
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // SMOOTH SCROLL for internal anchors only
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+          // close mobile menu if open
+          if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+          // update active link classes
+          document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // ACTIVE SECTION ON SCROLL & BACK-TO-TOP button
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      document.querySelectorAll('section[id]').forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) link.classList.add('active');
+          });
+        }
+      });
+
+      const backToTopButton = document.getElementById('back-to-top');
+      if (scrollPosition > 300) backToTopButton.classList.remove('hidden'); else backToTopButton.classList.add('hidden');
+    });
+
+    // BACK TO TOP
+    document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // SKILL BARS ANIMATION (run once when skills in view)
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      const skillsSection = document.getElementById('skills');
+      if (!skillsSection) return;
+      const triggerPoint = skillsSection.offsetTop - window.innerHeight + 200;
+      if (window.scrollY >= triggerPoint) {
+        skillBars.forEach(bar => {
+          const width = bar.getAttribute('data-width') || bar.style.width || '0%';
+          // initially set to 0 then animate to width
+          bar.style.width = '0';
+          setTimeout(() => bar.style.width = width, 100);
+        });
+        window.removeEventListener('scroll', animateSkillBars);
+      }
+    }
+    // ensure each progress has data-width (already inline style used above)
+    document.querySelectorAll('.skill-progress').forEach(bar => {
+      if (!bar.getAttribute('data-width')) bar.setAttribute('data-width', bar.style.width || '0%');
+    });
+    window.addEventListener('scroll', animateSkillBars);
+
+    // CONTACT FORM SUBMISSION (Formspree) - AJAX for nicer UX
+    const form = document.getElementById('contact-form');
+    form && form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: form.querySelector('#name').value,
+        email: form.querySelector('#email').value,
+        subject: form.querySelector('#subject').value,
+        message: form.querySelector('#message').value
+      };
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          alert('✅ Thank you! Your message has been sent.');
+          form.reset();
+        } else {
+          alert('❌ Oops! Something went wrong while sending your message.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('⚠️ Network error. Please try again later.');
+      }
+    });
+
+    // TYPEWRITER effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const text = "Anubhav Maurya";
+      const el = document.getElementById('typewriter');
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 120);
+        }
+      }
+      type();
+    });
+
+    // RESUME LINKS: open in new tab AND trigger download
+    // (some browsers limit download from cross-origin; this handles best-effort)
+    document.querySelectorAll('.resume-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        // allow ctrl/cmd+click to behave naturally
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+        e.preventDefault();
+        const url = this.href;
+        // open a new tab
+        window.open(url, '_blank', 'noopener');
+        // trigger download
+        try {
+          const a = document.createElement('a');
+          a.href = url;
+          const filename = this.getAttribute('download') || url.split('/').pop();
+          a.setAttribute('download', filename);
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } catch (err) {
+          // fallback: do nothing; user already has new tab open
+          console.warn('Download fallback — opened in new tab.', err);
+        }
+      });
+    });
+
+  </script>
 </body>
 </html>
