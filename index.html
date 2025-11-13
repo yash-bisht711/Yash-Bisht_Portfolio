@@ -1,703 +1,353 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yash Bisht — Portfolio</title>
-  <!-- Tailwind CDN -->
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yash Bisht | MERN Stack Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#0ea5e9',
-            secondary: '#7e22ce',
-            dark: '#0f172a',
-            darker: '#020617'
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script> -->
-  <script>
-  tailwind.config = {
-    darkMode: 'class',
-    theme: {
-      extend: {
-        colors: {
-          primary: '#0ea5e9',
-          secondary: '#7e22ce',
-          dark: '#0f172a',
-          darker: '#020617'
-        },
-        fontFamily: {
-          sans: ['Inter', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
-
-<!-- THEN load the CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0f172a;
-      color: #e2e8f0;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #0ea5e9, #7e22ce);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .card-hover { transition: all 0.3s ease; }
-    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(14,165,233,0.12); }
-
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background: linear-gradient(90deg,#0ea5e9,#7e22ce);
-      transition: width .25s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-    .active::after { width: 100%; }
-
-    .skill-bar { height: 8px; border-radius: 4px; background-color: #1e293b; overflow: hidden; }
-    .skill-progress { height: 100%; border-radius: 4px; background: linear-gradient(90deg,#0ea5e9,#7e22ce); transition: width 1s ease-in-out; }
-
-    .project-card {
-      background: linear-gradient(145deg,#1e293b,#0f172a);
-      box-shadow: 5px 5px 15px rgba(2,6,23,0.5), -5px -5px 15px rgba(30,41,59,0.5);
-    }
-    .contact-input { background-color: #1e293b; border: 1px solid #334155; transition: all .2s ease; }
-    .contact-input:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); outline: none; }
-
-    .btn-primary { background: linear-gradient(90deg,#0ea5e9,#7e22ce); transition: all .2s ease; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14,165,233,0.18); }
-
-    .social-icon { transition: transform .2s ease; }
-    .social-icon:hover { transform: translateY(-3px); }
-
-    .text-neon1, .text-neon2 {
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  .text-neon1:hover {
-    color: #00ffff; /* Cyan glow */
-    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
-    transform: scale(1.1);
-  }
-
-  .text-neon2:hover {
-    color: #ff00ff; /* Magenta glow */
-    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    transform: scale(1.1);
-  }
-
-    footer{
-      width:100%;
-    }
-
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    .floating { animation: float 3.5s ease-in-out infinite; }
-
+    html { scroll-behavior: smooth; }
+    .nav-active { color: #3b82f6; font-weight: 600; }
+    .typed-text { border-right: 2px solid #3b82f6; animation: blink 0.7s infinite; }
+    @keyframes blink { 50% { border-color: transparent; } }
   </style>
+  <!-- Custom bounce animation -->
+<style>
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+</style>
+
 </head>
-<body class="bg-dark text-slate-200">
+<body class="bg-gray-900 text-gray-100 font-sans">
 
-  <!-- NAV -->
-  <nav class="fixed w-full bg-darker/50 backdrop-blur-sm z-50 shadow-lg">
-    <div class="container mx-auto px-6 py-4">
-      <div class="flex items-center justify-between">
-        <a href="#" class="text-2xl font-bold gradient-text">Yash's Portfolio</a>
+  <!-- Navbar -->
+  <header class="fixed w-full top-0 left-0 z-50 bg-gray-900/90 backdrop-blur-md shadow-lg transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-bold text-blue-500">Yash's Portfolio</h1>
+      <nav class="flex items-center">
+        <ul id="nav-links" class="hidden md:flex gap-6 text-lg mr-6">
+          <li><a href="#home" class="nav-link hover:text-blue-400 transition">Home</a></li>
+          <li><a href="#about" class="nav-link hover:text-blue-400 transition">About</a></li>
+          <li><a href="#skills" class="nav-link hover:text-blue-400 transition">Skills</a></li>
+          <li><a href="#projects" class="nav-link hover:text-blue-400 transition">Projects</a></li>
+          <li><a href="#contact" class="nav-link hover:text-blue-400 transition">Contact</a></li>
+        </ul>
+        <a href="assets/Yash Bisht.pdf" target="_blank" class="hidden md:inline-block px-5 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium transition resume-link">Resume</a>
+        <button id="menu-btn" class="md:hidden text-2xl ml-4"><i class="fa-solid fa-bars"></i></button>
+      </nav>
+    </div>
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu" class="hidden flex-col items-center md:hidden bg-gray-800 py-4 space-y-4">
+      <li><a href="#home" class="nav-link ml-2 hover:text-blue-400">Home</a></li>
+      <li><a href="#about" class="nav-link ml-2 hover:text-blue-400">About</a></li>
+      <li><a href="#skills" class="nav-link ml-2 hover:text-blue-400">Skills</a></li>
+      <li><a href="#projects" class="nav-link ml-2 hover:text-blue-400">Projects</a></li>
+      <li><a href="#contact" class="nav-link ml-2 hover:text-blue-400">Contact</a></li>
+<!--       <li><a href="assets/Yash Bisht.pdf" target="_blank" class="nav-link ml-1.5 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium transition hover:text-blue-400 font-semibold resume-link" download="Yash_Bisht_Resume">Resume</a></li> -->
+      <li><a href="assets/Yash Bisht.pdf" target="_blank" class="px-4 py-2 ml-1.5 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition">Resume</a></li>
+    </ul>
+  </header>
 
-        <!-- mobile toggle -->
-        <div class="md:hidden">
-          <button id="menu-toggle" class="text-slate-200 hover:text-primary focus:outline-none">
-            <i class="fas fa-bars text-2xl"></i>
+  <!-- Hero Section -->
+<!--   <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-24">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Hi, I'm <span class="text-blue-500">Yash Bisht</span></h2>
+    <h3 class="text-2xl md:text-3xl text-gray-300 mb-6">
+      <span class="typed-text" id="typed"></span>
+    </h3>
+    <p class="text-lg md:text-xl text-gray-400 max-w-xl">A passionate <span class="text-blue-400">MERN Stack Developer</span> who loves building scalable web applications and exploring creative ideas.</p>
+    <div class="mt-6 flex gap-4">
+      <a href="#projects" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium transition">View Projects</a>
+      <a href="#contact" class="px-6 py-2 border border-blue-500 hover:bg-blue-500 hover:text-white rounded-lg font-medium transition">Hire Me</a>
+    </div>
+    <div class="mt-8 flex gap-6 text-2xl">
+      <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+      <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+    </div>
+  </section> -->
+  <!-- Hero Section -->
+<section
+  id="home"
+  class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-20 bg-gray-900 text-white relative overflow-hidden pt-24"
+>
+  <!-- Left Content -->
+  <div class="w-full md:w-1/2 space-y-5 text-center md:text-left md:pr-10">
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+      Hi, I'm <span class="text-blue-500">Yash Bisht</span>
+    </h1>
+
+    <h3 class="text-2xl md:text-3xl text-gray-300">
+      <span class="typed-text" id="typed"></span>
+    </h3>
+
+    <p class="text-gray-400 max-w-md mx-auto md:mx-0 leading-relaxed">
+      A passionate <span class="text-blue-400">MERN Stack Developer</span> crafting modern, responsive, and dynamic web
+      experiences.
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex justify-center md:justify-start gap-4 pt-4">
+      <a
+        href="#projects"
+        class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition duration-300 shadow-md hover:shadow-blue-500/30"
+        >View Projects</a
+      >
+      <a
+        href="#contact"
+        class="px-6 py-3 border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white rounded-lg font-semibold transition duration-300 shadow-md hover:shadow-blue-500/30"
+        >Hire Me</a
+      >
+    </div>
+
+    <!-- Social Icons -->
+    <div class="mt-8 flex justify-center md:justify-start gap-6 text-2xl text-gray-400">
+      <a href="https://github.com/yash-bisht711" class="hover:text-blue-400 transition-transform transform hover:-translate-y-1"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/yash-bisht-/" class="hover:text-blue-400 transition-transform transform hover:-translate-y-1"><i class="fab fa-linkedin"></i></a>
+      <a href="https://x.com/SinghWhyrush711" class="hover:text-blue-400 transition-transform transform hover:-translate-y-1"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+
+  <!-- Right Image with bounce animation -->
+  <div class="w-full md:w-1/2 flex justify-center md:justify-end mb-10 md:mb-0 relative">
+    <div class="relative animate-bounce-slow">
+      <img
+        src="https://img.freepik.com/premium-vector/cyber-hacker-cartoon-character_1367638-8757.jpg?semt=ais_hybrid&w=740&q=80"
+        alt="Developer Illustration"
+        class="w-64 md:w-80 rounded-full shadow-lg border-4 border-blue-500 hover:scale-105 transition-transform duration-500"
+      />
+      <div class="absolute inset-0 bg-blue-500 opacity-10 blur-2xl rounded-full animate-pulse"></div>
+    </div>
+  </div>
+</section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-gray-800 px-6 md:px-20">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <img src="https://img.freepik.com/premium-vector/cyber-hacker-cartoon-character_1367638-8757.jpg?semt=ais_hybrid&w=740&q=80" alt="Profile Picture" class="rounded-2xl shadow-lg w-72 mx-auto md:mx-0">
+      <div>
+        <h3 class="text-3xl font-bold mb-4 text-blue-400">About Me</h3>
+        <p class="text-gray-300 mb-4">I’m a full-stack developer who loves to create efficient and elegant web solutions using MongoDB, Express.js, React, and Node.js. I enjoy solving real-world problems and continuously learning new technologies.</p>
+        <p class="text-gray-400">When I’m not coding, I’m exploring new tools, optimizing UI/UX, or contributing to open-source projects.</p>
+        <div class="flex gap-4 mt-4">
+          <a href="assets/Yash Bisht.pdf" target="_blank" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition">View Resume</a>
+          <a href="#contact" class="px-6 py-3 border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white rounded-lg font-semibold transition">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20 px-6 md:px-20">
+    <div class="max-w-5xl mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-10 text-blue-400">Tech Stack</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-html5 text-3xl text-orange-500"></i><p>HTML</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-css3-alt text-3xl text-blue-500"></i><p>CSS</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-js text-3xl text-yellow-400"></i><p>JavaScript</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-react text-3xl text-blue-400"></i><p>React</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-node text-3xl text-green-500"></i><p>Node.js</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fas fa-database text-3xl text-green-400"></i><p>MongoDB</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-git-alt text-3xl text-orange-400"></i><p>Git</p></div>
+        <div class="p-4 bg-gray-800 rounded-lg shadow hover:scale-105 transition"><i class="fab fa-github text-3xl text-gray-300"></i><p>GitHub</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <!-- Projects -->
+<section id="projects" class="py-20 bg-gray-800 px-6 md:px-20">
+  <div class="max-w-6xl mx-auto text-center">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-2">Projects</h2>
+      <p class="text-gray-400">A few highlights — click to explore details</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Project Card 1 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-[1.03]">
+        <img src="./assets/Screenshot (1113).png" alt="Vi-Meet" class="w-full h-48 object-cover">
+        <div class="p-6 text-left">
+          <h4 class="text-xl font-semibold text-white mb-2">Vi-Meet</h4>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            A video meeting platform with authentication, chat, and real-time communication built using the MERN stack.
+          </p>
+          <p class="text-xs text-gray-500 mb-4">MongoDB • Express • React • Node • Tailwind CSS</p>
+          <div class="flex gap-4">
+            <a href="https://vi-meet-1c0480.netlify.app/" target="_blank"
+              class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-sm rounded-md text-white font-medium transition">Live</a>
+            <a href="https://github.com/yash-bisht711/frontend_Vi-Meet" target="_blank"
+              class="px-3 py-2 border border-blue-500 hover:bg-blue-600 hover:text-white text-sm rounded-md text-blue-400 font-medium transition">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-[1.03]">
+        <img src="./assets/mysteryspot.png" alt="MysterySpot" class="w-full h-48 object-cover">
+        <div class="p-6 text-left">
+          <h4 class="text-xl font-semibold text-white mb-2">MysterySpot</h4>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            A real-time chat application using Socket.io and MongoDB with smooth user authentication and active status.
+          </p>
+          <p class="text-xs text-gray-500 mb-4">React • Node.js • Socket.io • MongoDB</p>
+          <div class="flex gap-4">
+            <a href="https://mysteryspot.netlify.app/" target="_blank"
+              class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-sm rounded-md text-white font-medium transition">Live</a>
+            <a href="https://github.com/StutiSharan/Game-Project" target="_blank"
+              class="px-3 py-2 border border-blue-500 hover:bg-blue-600 hover:text-white text-sm rounded-md text-blue-400 font-medium transition">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 3 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-[1.03]">
+        <img src="./assets/memhub.jpg" alt="MemeStream" class="w-full h-48 object-cover">
+        <div class="p-6 text-left">
+          <h4 class="text-xl font-semibold text-white mb-2">MemeStream</h4>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            A meme creation and sharing platform powered by AI caption generation, Firebase auth, and a custom feed.
+          </p>
+          <p class="text-xs text-gray-500 mb-4">React.js • Firebase • Tailwind CSS • Node.js</p>
+          <div class="flex gap-4">
+            <a href="https://memestream.vercel.app/" target="_blank"
+              class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-sm rounded-md text-white font-medium transition">Live</a>
+            <a href="https://github.com/yash-bisht711/frontend-memehub" target="_blank"
+              class="px-3 py-2 border border-blue-500 hover:bg-blue-600 hover:text-white text-sm rounded-md text-blue-400 font-medium transition">Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Contact -->
+    <!-- Contact -->
+  <section id="contact" class="py-20 px-6 md:px-20 bg-gradient-to-b from-gray-900 to-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold text-center mb-10 text-blue-400">Contact Me</h3>
+
+      <div class="grid md:grid-cols-2 gap-10 items-start bg-gray-900/50 backdrop-blur-lg rounded-2xl p-8 shadow-lg">
+        <!-- Contact Info -->
+        <div class="space-y-6 text-gray-300">
+          <h4 class="text-2xl font-semibold text-blue-400">Let’s Connect</h4>
+          <p class="text-gray-400 leading-relaxed">
+            I’m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            Feel free to reach out through the form or the contact details below.
+          </p>
+          <div class="space-y-3 text-gray-300">
+            <p class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-blue-500"></i> Bareilly, Uttar Pradesh, India</p>
+            <p class="flex items-center gap-3"><i class="fa-solid fa-envelope text-blue-500"></i> whyrush711@gmail.com</p>
+            <p class="flex items-center gap-3"><i class="fa-solid fa-phone text-blue-500"></i> +91 9876543210</p>
+          </div>
+          <div class="flex gap-5 text-2xl mt-6">
+            <a href="https://github.com/yash-bisht711" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-github"></i></a>
+            <a href="https://x.com/SinghWhyrush711" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/in/yash-bisht-" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+
+        <!-- Contact Form (Formspree Integrated) -->
+        <form action="https://formspree.io/f/xpwkzeel" method="POST" class="space-y-4">
+          <div>
+            <h4 class="text-xl font-semibold text-blue-400">Send Me A Message</h4>
+            <label class="block text-sm font-medium mb-1 text-gray-300">Your Name</label>
+            <input type="text" name="name" required placeholder="John Doe"
+              class="w-full p-3 bg-gray-800/60 rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none transition">
+          </div>
+          <div>
+            
+            <label class="block text-sm font-medium mb-1 text-gray-300">Your Email</label>
+            <input type="email" name="email" required placeholder="john@example.com"
+              class="w-full p-3 bg-gray-800/60 rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none transition">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1 text-gray-300">Your Message</label>
+            <textarea name="message" rows="5" required placeholder="Write your message..."
+              class="w-full p-3 bg-gray-800/60 rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none transition"></textarea>
+          </div>
+          <button type="submit"
+            class="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold shadow-md transition">
+            Send Message
           </button>
-        </div>
-
-        <!-- desktop menu -->
-        <div class="hidden md:flex items-center space-x-6">
-          <a href="#home" class="nav-link active">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#skills" class="nav-link">Skills</a>
-          <a href="#projects" class="nav-link">Projects</a>
-          <a href="#contact" class="nav-link">Contact</a>
-
-          <!-- Resume button in navbar (opens new tab & triggers download via JS) -->
-          <a href="assets/Yash Bisht.pdf" class="px-4 py-2 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition resume-link" download="Yash_Bisht_Resume">Resume</a>
-        </div>
-      </div>
-
-      <!-- mobile menu -->
-      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
-        <a href="#home" class="block py-2 nav-link active">Home</a>
-        <a href="#about" class="block py-2 nav-link">About</a>
-        <a href="#skills" class="block py-2 nav-link">Skills</a>
-        <a href="#projects" class="block py-2 nav-link">Projects</a>
-        <a href="#contact" class="block py-2 nav-link">Contact</a>
-        <a href="assets/Yash Bisht.pdf" class="px-4 py-2 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition resume-link" download="Yash_Bisht_Resume">Resume</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO / HOME -->
-  <section id="home" class="min-h-screen flex items-center pt-20">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-      <div class="md:w-1/2 mb-12 md:mb-0">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span id="typewriter" class="gradient-text"></span></h1>
-        <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-300">Full Stack Developer</h2>
-        <p class="text-lg mb-8 text-slate-400 max-w-lg">
-          I engineer modern web applications that deliver results through performance, usability, and clean design.
-          <br>Let’s build technology that makes a difference.
-        </p>
-
-        <div class="flex space-x-4">
-          <a href="#contact" class="px-6 py-3 rounded-full btn-primary font-medium">Hire Me</a>
-          <a href="#projects" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">View Work</a>
-        </div>
-
-        <!-- Social links OPEN IN NEW TAB -->
-        <div class="flex mt-8 space-x-4">
-          <a href="https://github.com/yash-bisht711" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-gray-500">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/yash-bisht-/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://x.com/SinghWhyrush711" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <!-- <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" rel="noopener noreferrer" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600">
-            <i class="fab fa-instagram text-xl"></i>
-          </a> -->
-        </div>
-      </div>
-
-      <!-- professional profile picture -->
-      <div class="md:w-1/2 flex justify-center">
-        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
-          <!-- replace Images/a.jpg with your high-res portrait -->
-          <img src="https://img.freepik.com/premium-vector/cyber-hacker-cartoon-character_1367638-8757.jpg?semt=ais_hybrid&w=740&q=80" alt="Anubhav Maurya" class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 floating shadow-lg">
-        </div>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="py-20 bg-darker">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-      </div>
-
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-          <div class="relative w-64 h-74">
-            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-secondary blur-xl opacity-90"></div>
-            <img src="assets/Web_Photo_EditorYashbnew.jpg" alt="About photo" class="relative w-full h-full object-cover rounded-2xl border-4 border-slate-800">
-          </div>
-        </div>
-
-        <div class="md:w-2/3 md:pl-12">
-          <h3 class="text-2xl font-bold mb-6">Who am I?</h3>
-          <p class="text-slate-400 mb-6">
-            I'm a passionate aspiring Full Stack Developer with a strong focus on building modern, responsive web applications.
-            I specialize in the JavaScript ecosystem (React, Node.js) and modern CSS frameworks. I'm eager to apply my skills to real-world projects.
-          </p>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div>
-              <h4 class="font-semibold mb-2">Name: <span class="text-slate-300">Yash Bisht</span></h4>
-              <h4 class="font-semibold mb-2">Email: <span class="text-slate-300">whyrush711@gmail.com</span></h4>
-              <h4 class="font-semibold mb-2">Phone: <span class="text-slate-300">+91 9528282053</span></h4>
-            </div>
-            <div>
-              <h4 class="font-semibold mb-2">Age: <span class="text-slate-300">22</span></h4>
-              <h4 class="font-semibold mb-2">Location: <span class="text-slate-300">Uttar Pradesh, Bareilly</span></h4>
-            </div>
-          </div>
-
-          <!-- Resume button: opens in new tab & triggers download -->
-          <div class="flex space-x-4">
-            <a href="assets/Yash Bisht.pdf" class="px-6 py-3 rounded-full btn-primary font-medium resume-link" download="Yash_Bisht_Resume">
-              Resume <i class="fas fa-arrow-down ml-2"></i>
-            </a>
-            <a href="#contact" class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">Contact Me</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="py-10 bg-dark">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="gradient-text">Skills</span></h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>
-          <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">HTML/CSS</span><span>95%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">JavaScript</span><span>90%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">React</span><span>85%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Node.js</span><span>80%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-2xl font-bold mb-6">Professional Skills</h3>
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Communication</span><span>90%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Teamwork</span><span>85%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Problem Solving</span><span>95%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2"><span class="font-medium">Creativity</span><span>75%</span></div>
-              <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<!-- Tools & Technologies (updated with requested items & brand colors) -->
-<div class="mt-16">
-  <h3 class="text-2xl font-bold mb-8 text-center">Tools & <span class="gradient-text">Technologies</span></h3>
-
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-
-    <!-- JavaScript -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#f7df1e;color:#000;font-weight:700;">JS</span>
-      <span>JavaScript</span>
-    </div>
-
-    <!-- React -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#61dafb;color:#041323;">
-        <i class="fab fa-react text-2xl" aria-hidden="true"></i>
-      </span>
-      <span>React</span>
-    </div>
-
-    <!-- Node.js -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#8cc84b;color:#06240a;">
-        <i class="fab fa-node-js text-2xl" aria-hidden="true"></i>
-      </span>
-      <span>Node.js</span>
-    </div>
-
-    <!-- express.js -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">Ex</span>
-      <span>Express.js</span>
-    </div>
-
-    <!-- MongoDB -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#47A248;color:#fff;">
-        <i class="fas fa-database text-xl" aria-hidden="true"></i>
-      </span>
-      <span>MongoDB</span>
-    </div>
-
-    <!-- Redux -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <!-- Redux brand purple -->
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#764abc;color:#fff;">
-        <!-- use FA redux if available; fallback to 'R' -->
-        <i class="fab fa-redux text-xl" aria-hidden="true"></i>
-      </span>
-      <span>Redux</span>
-    </div>
-
-    <!-- HTML5 -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#e34f26;color:#fff;">
-        <i class="fab fa-html5 text-xl" aria-hidden="true"></i>
-      </span>
-      <span>HTML5</span>
-    </div>
-
-    <!-- CSS -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#2965f1;color:#fff;">
-        <i class="fab fa-css3-alt text-xl" aria-hidden="true"></i>
-      </span>
-      <span>CSS3</span>
-    </div>
-
-    <!-- Tailwind CSS -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#06b6d4;color:#012023;font-weight:700;">TW</span>
-      <span>Tailwind CSS</span>
-    </div>
-
-    <!-- Babel -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#F9DC3E;color:#000;font-weight:700;">B</span>
-      <span>Babel</span>
-    </div>
-
-    <!-- npm -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#CB3837;color:#fff;">
-        <i class="fab fa-npm text-lg" aria-hidden="true"></i>
-      </span>
-      <span>npm</span>
-    </div>
-
-    <!-- Notion -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <!-- Notion uses black/white -->
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">N</span>
-      <span>Notion</span>
-    </div>
-
-    <!-- VS Code -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <!-- VS Code teal -->
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#0078d7;color:#fff;">
-        <i class="fas fa-code text-lg" aria-hidden="true"></i>
-      </span>
-      <span>VS Code</span>
-    </div>
-
-    <!-- Postman -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#FF6C37;color:#fff;font-weight:700;">PM</span>
-      <span>Postman</span>
-    </div>
-
-    <!-- Git -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#F34F29;color:#fff;">
-        <i class="fab fa-git-alt text-lg" aria-hidden="true"></i>
-      </span>
-      <span>Git</span>
-    </div>
-
-    <!-- GitHub -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#181717;color:#fff;">
-        <i class="fab fa-github text-lg" aria-hidden="true"></i>
-      </span>
-      <span>GitHub</span>
-    </div>
-
-    <!-- Vercel -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <!-- Vercel black/white -->
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#000;color:#fff;font-weight:700;">V</span>
-      <span>Vercel</span>
-    </div>
-
-    <!-- Netlify -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <!-- Netlify teal/green -->
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#00C7B7;color:#013233;font-weight:700;">Nt</span>
-      <span>Netlify</span>
-    </div>
-
-    <!-- Vite -->
-    <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
-      <!-- Vite purple-ish -->
-      <span class="w-12 h-12 mb-2 rounded-full flex items-center justify-center" style="background:#646CFF;color:#fff;font-weight:700;">Vt</span>
-      <span>Vite</span>
-    </div>
-
-  </div>
-</div>
-
-
-  <!-- PROJECTS -->
-   <section id="projects" class="py-16">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold g-text" style="--tw-gradient-stops:#06b6d4,#8b5cf6">Projects</h2>
-        <p class="text-slate-300 mt-2">A few highlights — click to open details</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Project card template - duplicate/change as needed -->
-        <div class="glass rounded-xl overflow-hidden p-4 transform hover:-translate-y-2 transition cursor-pointer project-card" data-title="Recipe Explorer" data-img="Images/recipe.png" data-desc="A full-featured recipe explorer built with React and Firebase that supports search, favorites, and uploads." data-live="https://recipe-sharing-apps.netlify.app/" data-code="https://github.com/anuuuuu0094/recipe_sharing_app">
-          <div class="h-44 w-full bg-slate-800 rounded-md overflow-hidden mb-4">
-            <img src="./assets/Screenshot (1113).png" alt="Recipe Explorer" class="object-cover w-full h-full">
-          </div>
-          <h3 class="font-semibold text-lg">Vi-Meet</h3>
-          <p class="text-slate-300 mt-2 text-sm"> MongoDB • Express • React • Node • Tailwind CSS</p>
-          <div class="mt-4 flex items-center gap-3">
-            <!-- <button class="px-3 py-2 rounded-md border border-slate-700 open-project">View</button> -->
-            <a href="https://vi-meet-1c0480.netlify.app/" target="_blank" class="text-neon1">Live</a>
-            <a href="https://github.com/yash-bisht711/frontend_Vi-Meet" target="_blank" class="text-neon2">Code</a>
-          </div>
-        </div>
-
-        <div class="glass rounded-xl overflow-hidden p-4 transform hover:-translate-y-2 transition cursor-pointer project-card" data-title="Property Connect" data-img="Images/property.png" data-desc="Productivity & property management UI built with React and Express for team workflows." data-live="https://property-connect-real-estate.netlify.app/" data-code="https://github.com/anuuuuu0094/property_connect/tree/main/project_real_estate">
-          <div class="h-44 w-full bg-slate-800 rounded-md overflow-hidden mb-4">
-            <img src="./assets/mysteryspot.png" alt="Property Connect" class="object-cover w-full h-full">
-          </div>
-          <h3 class="font-semibold text-lg">MysterySpot</h3>
-          <p class="text-slate-300 mt-2 text-sm">React • Firebase • TailwindCSS</p>
-          <div class="mt-4 flex items-center gap-3">
-            <!-- <button class="px-3 py-2 rounded-md border border-slate-700 open-project">View</button> -->
-            <a href="https://mysteryspot.netlify.app/" target="_blank" class="text-neon1">Live</a>
-            <a href="https://github.com/StutiSharan/Game-Project" target="_blank" class="text-neon2">Code</a>
-          </div>
-        </div>
-
-        <div class="glass rounded-xl overflow-hidden p-4 transform hover:-translate-y-2 transition cursor-pointer project-card" data-title="Hospital Management" data-img="Images/hospital.png" data-desc="A hospital management system demo with patient records, scheduling, and Firebase persistence." data-live="https://hospitals-management-system.netlify.app/" data-code="https://github.com/anuuuuu0094/Hospital_management_system">
-          <div class="h-44 w-full bg-slate-800 rounded-md overflow-hidden mb-4">
-            <img src="./assets/memhub.jpg" alt="Hospital Management" class="object-cover w-full h-full">
-          </div>
-          <h3 class="font-semibold text-lg">MemeStream</h3>
-          <p class="text-slate-300 mt-2 text-sm">React.js • Tailwind CSS • Firebase • Django • Netlify</p>
-          <div class="mt-4 flex items-center gap-3">
-            <!-- <button class="px-3 py-2 rounded-md border border-slate-700 open-project">View</button> -->
-            <a href="https://memestream.vercel.app/" target="_blank" class="text-neon1">Live</a>
-            <a href="https://github.com/yash-bisht711/frontend-memehub" target="_blank" class="text-neon2">Code</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="py-20 bg-dark">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
-          <p class="text-slate-400 mb-8">
-            Feel free to reach out to me for any questions or opportunities.
-          </p>
-
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-map-marker-alt text-primary text-xl"></i></div>
-              <div>
-                <h4 class="font-bold mb-1">Location</h4>
-                <p class="text-slate-400">Uttar Pradesh, Bareilly</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-envelope text-primary text-xl"></i></div>
-              <div>
-                <h4 class="font-bold mb-1">Email</h4>
-                <p class="text-slate-400">whyrush711@gmail.com</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-slate-800 p-3 rounded-full mr-4"><i class="fas fa-phone-alt text-primary text-xl"></i></div>
-              <div>
-                <h4 class="font-bold mb-1">Phone</h4>
-                <p class="text-slate-400">+91 9528282053</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8">
-            <h4 class="font-bold mb-4">Follow Me</h4>
-            <div class="flex space-x-4">
-              <!-- <a href="https://github.com/yash-bisht711" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary"><i class="fab fa-github text-xl"></i></a> -->
-              <a href="https://github.com/yash-bisht711" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-gray-600"><i class="fab fa-github text-xl"></i></a>
-              <a href="https://www.linkedin.com/in/yash-bisht-/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600"><i class="fab fa-linkedin-in text-xl"></i></a>
-              <a href="https://x.com/SinghWhyrush711" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-400"><i class="fab fa-twitter text-xl"></i></a>
-              <!-- <a href="https://www.instagram.com/anuuuuu___0094/" target="_blank" rel="noopener noreferrer" class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-pink-600"><i class="fab fa-instagram text-xl"></i></a> -->
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
-
-          <!-- formspree + JS submit handler remains -->
-          <form action="https://formspree.io/f/xpwkzeel" method="POST" >
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label for="name" class="block mb-2 font-medium">Your Name</label>
-                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
-              </div>
-              <div>
-                <label for="email" class="block mb-2 font-medium">Your Email</label>
-                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
-              </div>
-            </div>
-
-            <div>
-              <label for="subject" class="block mb-2 font-medium">Subject</label>
-              <input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
-            </div>
-
-            <div>
-              <label for="message" class="block mb-2 font-medium">Message</label>
-              <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required></textarea>
-            </div>
-
-            <button type="submit" class="px-8 py-3 rounded-full btn-primary font-medium w-full">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
     <!-- Footer -->
-    <!-- <footer class="w-full bg-[#020617] py-12" > -->
-<footer>
-  <div class="max-w-9xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-6 md:mb-0">
-        <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
-        <p class="text-slate-400 mt-2">&copy; 2025 Yash Bisht. All rights reserved.</p>
-      </div>
+  <footer class="bg-gray-900 text-gray-400 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Left Text -->
+      <p class="text-center md:text-left text-sm">
+        © 2025 <span class="text-blue-500 font-semibold">Yash Bisht</span>. All rights reserved.
+      </p>
 
-      <div class="flex space-x-6">
-        <!-- <a href="https://github.com/yash-bisht711" class="text-slate-400 hover:text-primary transition"> -->
-        <a href="https://github.com/yash-bisht711" target="_blank" class="text-slate-400 hover:text-gray-500 transition">
-          <i class="fab fa-github text-xl"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/yash-bisht-/" target="_blank" class="text-slate-400 hover:text-blue-500 transition">
-          <i class="fab fa-linkedin-in text-xl"></i>
-        </a>
-        <a href="https://x.com/SinghWhyrush711" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-blue-300 transition">
-          <i class="fab fa-twitter text-xl"></i>
-        </a>
+      <!-- Social Links -->
+      <div class="flex gap-6 text-2xl justify-center md:justify-end">
+        <a href="https://github.com/yash-bisht711" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-github"></i></a>
+        <a href="https://x.com/SinghWhyrush711" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/in/yash-bisht-" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 
-  <!-- Back to top -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hidden">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- SCRIPTS -->
+  <!-- Script -->
   <script>
-    // MOBILE MENU TOGGLE
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    // Typing Effect
+    const words = ["MERN Developer", "Creator", "Problem Solver", "Tech Enthusiast"];
+    let i = 0, j = 0, currentWord = "", isDeleting = false;
+    const typed = document.getElementById("typed");
 
-    // SMOOTH SCROLL for internal anchors only
-     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (!targetId || targetId === '#') return;
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
-          // close mobile menu if open
-          if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
-          // update active link classes
-          document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-          this.classList.add('active');
+    function type() {
+      currentWord = words[i];
+      if (isDeleting) {
+        typed.textContent = currentWord.substring(0, j--);
+        if (j < 0) {
+          isDeleting = false;
+          i = (i + 1) % words.length;
         }
-      });
-    });
-
-    // ACTIVE SECTION ON SCROLL & BACK-TO-TOP button
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.scrollY;
-      document.querySelectorAll('section[id]').forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) link.classList.add('active');
-          });
-        }
-      });
-
-      const backToTopButton = document.getElementById('back-to-top');
-      if (scrollPosition > 300) backToTopButton.classList.remove('hidden'); else backToTopButton.classList.add('hidden');
-    });
-
-    // BACK TO TOP
-    document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // SKILL BARS ANIMATION (run once when skills in view)
-    function animateSkillBars() {
-      const skillBars = document.querySelectorAll('.skill-progress');
-      const skillsSection = document.getElementById('skills');
-      if (!skillsSection) return;
-      const triggerPoint = skillsSection.offsetTop - window.innerHeight + 200;
-      if (window.scrollY >= triggerPoint) {
-        skillBars.forEach(bar => {
-          const width = bar.getAttribute('data-width') || bar.style.width || '0%';
-          // initially set to 0 then animate to width
-          bar.style.width = '0';
-          setTimeout(() => bar.style.width = width, 100);
-        });
-        window.removeEventListener('scroll', animateSkillBars);
+      } else {
+        typed.textContent = currentWord.substring(0, j++);
+        if (j === currentWord.length + 5) isDeleting = true;
       }
+      setTimeout(type, isDeleting ? 80 : 150);
     }
-    // ensure each progress has data-width (already inline style used above)
-    document.querySelectorAll('.skill-progress').forEach(bar => {
-      if (!bar.getAttribute('data-width')) bar.setAttribute('data-width', bar.style.width || '0%');
-    });
-    window.addEventListener('scroll', animateSkillBars);
+    type();
 
-    // CONTACT FORM SUBMISSION (Formspree) - AJAX for nicer UX
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+
+    // Active Navbar Link
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const sectionTop = sec.offsetTop - 100;
+        if (pageYOffset >= sectionTop) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("nav-active");
+        if (link.getAttribute("href").includes(current)) link.classList.add("nav-active");
+      });
+    });
+    
     const form = document.getElementById('contact-form');
     form && form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -724,48 +374,7 @@
         alert('⚠️ Network error. Please try again later.');
       }
     });
-    
-    // TYPEWRITER effect
-    document.addEventListener('DOMContentLoaded', function() {
-      const text = "Yash Bisht";
-      const el = document.getElementById('typewriter');
-      let i = 0;
-      function type() {
-        if (i < text.length) {
-          el.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, 120);
-        }
-      }
-      type();
-    });
-    
-    // RESUME LINKS: open in new tab AND trigger download
-    // (some browsers limit download from cross-origin; this handles best-effort)
-    document.querySelectorAll('.resume-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        // allow ctrl/cmd+click to behave naturally
-        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-        e.preventDefault();
-        const url = this.href;
-        // open a new tab
-        window.open(url, '_blank', 'noopener');
-        // trigger download
-        try {
-          const a = document.createElement('a');
-          a.href = url;
-          const filename = this.getAttribute('download') || url.split('/').pop();
-          a.setAttribute('download', filename);
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } catch (err) {
-          // fallback: do nothing; user already has new tab open
-          console.warn('Download fallback — opened in new tab.', err);
-        }
-      });
-    });
-
   </script>
+
 </body>
 </html>
