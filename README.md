@@ -26,14 +26,6 @@ This portfolio showcases my projects, skills, achievements, and contact informat
 
 ---
 
-## 📸 Preview
-
-> Add a screenshot or demo GIF here *(optional)*  
-Example:  
-![Portfolio Screenshot](./assets/preview.png)
-
----
-
 ## 📂 Folder Structure
 
 📁 portfolio/
