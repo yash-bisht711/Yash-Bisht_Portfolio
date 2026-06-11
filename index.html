@@ -400,6 +400,19 @@
         alert('⚠️ Network error. Please try again later.');
       }
     });
+
+                                                  const handleResume = () => {
+  // Open PDF
+  window.open("/resume/Yash_Bisht_Resume.pdf", "_blank");
+
+  // Download PDF
+  const link = document.createElement("a");
+  link.href = "/resume/Yash_Bisht_Resume.pdf";
+  link.download = "Yash_Bisht_Resume.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   </script>
 
 </body>
